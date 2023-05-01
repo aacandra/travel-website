@@ -1,0 +1,47 @@
+#root {
+    --PrimaryColor: hsl(199,100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 11%, 16%) ;
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+ }
+
+.home {
+    width: 100%;
+    height: 100vh;
+    
+  }
+  
+  .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    
+    
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    color: var(--bodyColor);
+    background-color: rgba(17, 108, 138, 0.439) ;
+  }
+  
+  @media (min-width: 768px) {
+    .carousel-caption {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  
