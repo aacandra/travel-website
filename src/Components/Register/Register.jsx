@@ -67,6 +67,7 @@ function RegisterModal() {
           <Modal.Title>Create An Account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email Address</Form.Label>
@@ -142,9 +143,19 @@ function RegisterModal() {
     </Form>
         </Modal.Body>
         
-      </Modal>
-    </>
-  );
-}
+        
+  <Modal.Footer>
+  {success && (
+  <div className="alert alert-success" role="alert">
+    Registration Successful!
+  </div> )}
 
+ {error && <div className="alert alert-danger">{error}</div>} 
+  </Modal.Footer>
+
+  </Modal>
+</>
+);
+}
 export default RegisterModal;
+

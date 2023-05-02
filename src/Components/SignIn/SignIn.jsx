@@ -4,8 +4,10 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import RegisterModal from '../Register/Register';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function ModalComponent() {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -13,6 +15,7 @@ function ModalComponent() {
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const handleClose = () => {
     setShow(false);
@@ -34,16 +37,38 @@ function ModalComponent() {
         }
       );
       if (response.status === 200) {
-        setSuccess(true);
-        setTimeout(() => {
-          handleClose();
-        }, 2000);
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        alert("Login Success!")
+        navigate('/Account'); 
       }
+      
     } catch (error) {
-      setError(error.message);
+      setError("Wrong email address or password");
     }
   }
 
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post(
+        'https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/logout',
+        null,
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+            Authorization: `bearer ${token}`,
+          }
+        }
+      );
+      setToken(null);
+      localStorage.removeItem("token");
+      
+    } catch (error) {
+      setError(error.response.data);
+    }
+  };
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormLogin({
@@ -68,13 +93,15 @@ function ModalComponent() {
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          )}
           <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" name="email" value={formLogin.email} onChange={handleInputChange} />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -87,11 +114,11 @@ function ModalComponent() {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {error && <p>{error}</p>}
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          {success && <div className="alert alert-success">Login successful</div>}
-          {error && <div className="alert alert-danger">{error}</div>}
+           
           <p>
             Not Registered Yet?{" "}
             <a href="#" onClick={handleShow}>
@@ -105,3 +132,5 @@ function ModalComponent() {
 }
 
 export default ModalComponent;
+ 
+ 

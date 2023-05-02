@@ -62,6 +62,11 @@ const Navbar = () => {
             {/* <button className="btn" onClick={handleShowModal}>
               Sign In
             </button> */}
+            <ModalComponent
+          showModal={showModal}
+          handleClose={handleCloseModal}
+          handleSave={() => alert('Sign In button clicked')}
+        />
           </ul>
 
           <div onClick={removeNavbar} className="closeNavbar">
@@ -73,11 +78,7 @@ const Navbar = () => {
           <TbGridDots className="icon" />
         </div>
 
-        <ModalComponent
-          showModal={showModal}
-          handleClose={handleCloseModal}
-          handleSave={() => alert('Sign In button clicked')}
-        />
+        
       </header>
     </section>
   );
