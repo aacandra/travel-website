@@ -5,6 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NavBar from "./Components/NavBar/Navbar";
 import Account from "./Components/Account/Account";
+import UpdateProfile from "./Components/UpdateProfile/UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,18 @@ const router = createBrowserRouter([
       <>
         <NavBar />
         <Account />
+        {/* <Footer /> */}
+      </>
+    ),
+  },
+
+
+  {
+    path: "/UpdateProfile",
+    element: (
+      <>
+        <NavBar />
+        <UpdateProfile />
         {/* <Footer /> */}
       </>
     ),

@@ -4,8 +4,10 @@ import { GiIsland } from 'react-icons/gi';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { TbGridDots } from 'react-icons/tb';
 import ModalComponent from '../SignIn/SignIn'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const isLogin = localStorage.getItem("token");
   const [showModal, setShowModal] = useState(false);
 
   const handleCloseModal = () => setShowModal(false);
@@ -25,7 +27,7 @@ const Navbar = () => {
     <section className="navbarSection">
       <header className="header flex">
         <div className="logoDiv">
-          <a href="#" className="logo flex">
+          <a href="./" className="logo flex">
             <h4>
               <GiIsland className="icon" />
               Next-Travel{' '}
@@ -36,7 +38,7 @@ const Navbar = () => {
         <div className={active}>
           <ul className="navList flex">
             <li className="navItem">
-              <a href="#" className="navLink">
+              <a href="./" className="navLink">
                 Home
               </a>
             </li>
@@ -58,15 +60,19 @@ const Navbar = () => {
                 Contact
               </a>
             </li>
-
-            {/* <button className="btn" onClick={handleShowModal}>
-              Sign In
-            </button> */}
+            {!isLogin ? (
             <ModalComponent
-          showModal={showModal}
-          handleClose={handleCloseModal}
-          handleSave={() => alert('Sign In button clicked')}
-        />
+              showModal={showModal}
+              handleClose={handleCloseModal}
+              handleSave={() => alert('Sign In button clicked')}
+        /> 
+              ) : (
+
+            <Link to="/Account" className="btn">
+                My Account
+              </Link>
+            )}
+
           </ul>
 
           <div onClick={removeNavbar} className="closeNavbar">

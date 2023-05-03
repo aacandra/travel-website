@@ -1,0 +1,80 @@
+#root {
+    --PrimaryColor: hsl(199,100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 11%, 16%) ;
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+ }
+
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  
+  .container {
+    max-width: 1024px;
+    width: 100%;
+    padding: 0 1rem;
+    margin: 120px 50px;
+
+  }
+  
+  .account-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .account-content img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  .account-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .account-detail h4 {
+    margin: 0.5rem 0;
+  }
+  
+  .logout-button {
+    border: none;
+    background-color: var(--PrimaryColor);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: var(--SecondaryColor);
+  }
+  
+  @media (min-width: 768px) {
+    .account-content {
+      flex-direction: row;
+      justify-content: center;
+    }
+  
+    .account-content img {
+      margin-right: 2rem;
+    }
+  }
+  

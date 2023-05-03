@@ -117,8 +117,8 @@ function RegisterModal() {
             name="role" 
             value={formRegister.role} onChange={handleChange}>
               <option>Select Role</option>
-              <option value="1">Admin</option>
-              <option value="2">User</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
             </Form.Select>
           </Form.Group>
 
