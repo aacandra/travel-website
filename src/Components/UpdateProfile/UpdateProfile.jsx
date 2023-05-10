@@ -10,9 +10,8 @@ function UpdateProfile() {
   const [emailEdit, setEmailEdit] = useState("");
   const [pictureEdit, setPictureEdit] = useState("");
   const [numberEdit, setNumberEdit] = useState("");
-  const [roleEdit, setRoleEdit] = useState("");
   const [loading, setLoading] = useState(true);
-  const [roleError, setRoleError] = useState(false);
+
 
   useEffect(() => {
     axios.get('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/user', {
@@ -21,13 +20,12 @@ function UpdateProfile() {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((response) => {
-      console.log(response.data);
+   
       const user = response.data;
       setNameEdit(user.data.name);
       setEmailEdit(user.data.email);
       setPictureEdit(user.data.profilePictureUrl);
       setNumberEdit(user.data.phoneNumber);
-      setRoleEdit(user.data.role);
       setLoading(false);
     }).catch((error) => {
       console.log(error);
@@ -36,10 +34,7 @@ function UpdateProfile() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (roleEdit === "") {
-      setRoleError(true);
-      return;
-    }
+  
     axios.post('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-profile', {
       name: nameEdit,
       email: emailEdit,
@@ -53,6 +48,7 @@ function UpdateProfile() {
     }).then((response) => {
       console.log(response.data);
       alert('Update Data Succes!');
+      navigate("/Account");
       
 
     }).catch((error) => {
@@ -61,29 +57,6 @@ function UpdateProfile() {
     });
   }
 
-  const handleUserRoleSubmit = (event) => {
-    event.preventDefault();
-    if (roleEdit === "") {
-      setRoleError(true);
-      return;
-    }
-    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-user-role/`, {
-      role: roleEdit,
-    }, {
-      headers: {
-        apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }).then((response) => {
-      console.log(response.data);
-      alert('Update Data Succes!');
-      navigate("/Account");
-
-    }).catch((error) => {
-      console.log(error);
-      alert('Error Update Data. Try Again!.');
-    });
-  }
 
   if (loading) {
     return <div>Loading...</div>
@@ -122,7 +95,7 @@ function UpdateProfile() {
             <Form.Control type="text" placeholder="Profile Phone Number" value={numberEdit} onChange={(event) => setNumberEdit(event.target.value)} />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formSelect">
+          {/* <Form.Group className="mb-3" controlId="formSelect">
             <Form.Label>Role</Form.Label>
             <Form.Select aria-label="Select Role" value={roleEdit} onChange={(event) => setRoleEdit(event.target.value)} >
               <option>Plase Select Your Role</option>
@@ -130,7 +103,7 @@ function UpdateProfile() {
               <option value="user">User</option>
             </Form.Select>
             {roleError && <div className="text-danger">Please select your role!</div>}
-        </Form.Group>
+        </Form.Group> */}
 
         <Button variant="primary" type="submit">
         Save Changes

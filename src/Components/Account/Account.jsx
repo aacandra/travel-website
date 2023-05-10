@@ -57,32 +57,47 @@ const AccountDetail = ({ isLoggedIn }) => {
                 <li><h4>Phone Number : {account.data.phoneNumber}</h4></li>
                 </ul>
               </div>
-              <button
-                className="edit-button"
+              
+              <button                  
                 onClick={() => navigate("/UpdateProfile")}
               >
                 Edit Profile
               </button>
+
+              
 
             </>
           ) : (
             <p>Loading...</p>
           )}
         </div>
-      </div>
-
-      <button
-        className="logout-button"
-        onClick={() => {
-          localStorage.removeItem("token");
-          localStorage.removeItem("session_id");
-          navigate("/");
-          alert("You will be logged out!");
-        }}
-      >
-        LOGOUT
+     </div>
+     <div>
+     <button           
+          onClick={() => navigate("/Admin")}
+          >Admin Panel
       </button>
+
+     </div>
+     <br/>
+     <button
+         
+         onClick={() => {
+           localStorage.removeItem("token");
+           localStorage.removeItem("session_id");
+           navigate("/");
+           alert("You will be logged out!");
+         }}
+       >
+         Logout
+       </button>
+      
+      
     </div>
+    
+     
+
+
   );
 };
 

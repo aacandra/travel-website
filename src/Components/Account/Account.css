@@ -52,7 +52,7 @@
     margin: 0.5rem 0;
   }
   
-  .logout-button {
+  button {
     border: none;
     background-color: var(--PrimaryColor);
     color: #fff;
@@ -63,7 +63,8 @@
     transition: background-color 0.3s ease;
   }
   
-  .logout-button:hover {
+
+  button:hover {
     background-color: var(--SecondaryColor);
   }
   
