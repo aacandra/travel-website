@@ -133,7 +133,7 @@ const Promo = () => {
    .post(
      `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-promo`,
        {
-        name: newTitlePromo,
+        title: newTitlePromo,
         imageUrl: newImagePromo,
         description : newDescriptionPromo,
         terms_condition : newTermPromo,
@@ -352,9 +352,9 @@ const Promo = () => {
                             // value={formik.values.promoTitle}
                             // onChange={formik.handleChange} 
                           />   
-                          {errorMessage && (
+                          {/* {errorMessage && (
                           <p style={{ color: "red", fontSize: "12px" }}>
-                          {errorMessage}</p>)}
+                          {errorMessage}</p>)} */}
                                            
                         </div>
 

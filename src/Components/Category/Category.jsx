@@ -4,12 +4,12 @@ import axios from "axios";
 
 const Category = () => {
   const [nameAccount, setNameAccount] = useState("");
-  const [banner,setBanner] = useState([])
+  const [categories,setCategories] = useState([])
   const [pictureAccount, setPictureAccount] = useState("");
-  const [editBannerName, setEditBannerName] = useState("");
-  const [editBannerUrl, setEditBannerUrl] = useState("");
-  const [newBanner, setNewBanner] = useState("")
-  const [newImageUrl,setNewImageUrl] = useState ("")
+  const [editCategoriesName, seteditCategoriesName] = useState("");
+  const [editcategoriesUrl, setEditcategoriesUrl] = useState("");
+  const [newCategories, setNewCategories] = useState("")
+  const [newCategoriesUrl,setNewCategoriesUrl] = useState ("")
 
   
   
@@ -32,11 +32,11 @@ const Category = () => {
   }, []);
 
  
-  //  LIST BANNER
+  //  LIST CATEGORIES
   useEffect(() => {
     axios
       .get(
-        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/banners",
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/categories",
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -46,9 +46,9 @@ const Category = () => {
       .then((response) => {
         console.log(response.data);
         const item = response.data.data;
-        setBanner(item)   
-        setEditBannerName(response.data.data.name);
-        setEditBannerUrl(response.data.data.imageUrl);
+        setCategories(item)   
+        seteditCategoriesName(response.data.data.name);
+        setEditcategoriesUrl(response.data.data.imageUrl);
 
       })
       .catch((error) => {
@@ -56,14 +56,15 @@ const Category = () => {
       });
   }, []);
 
-  // EDIT/UPDATE BANNER
+  // EDIT/UPDATE CATEGORIES
   const handleUpdate = (bannerId) => { 
        
   
-    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${bannerId}`, {
+    axios.post(`
+    https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/category/${categoriesId}`, {
       
-      name: editBannerName,
-      imageUrl: editBannerUrl,
+      name: editCategoriesName,
+      imageUrl: editcategoriesUrl,
       
     }, {
       headers: {
@@ -84,11 +85,11 @@ const Category = () => {
     });
   }
 
-  // DELETE BANNER
-  const handleDelete = (bannerId) => {
+  // DELETE CATEGORIES
+  const handleDelete = (categoriesId) => {
     axios
       .delete(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-category/${categoriesId}`,
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -110,16 +111,16 @@ const Category = () => {
  
 
    
-// UPLOAD NEW BANNER
+// UPLOAD NEW CATEGORIES
 const handleSubmit = (event) => {
     event.preventDefault();  
   
   axios
    .post(
-     `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-banner`,
+     `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-category`,
        {
-        name: newBanner,
-        imageUrl: newImageUrl,
+        name: newCategories,
+        imageUrl: newCategoriesUrl,
        },
      {
         headers: {
@@ -222,12 +223,12 @@ const handleSubmit = (event) => {
           </a>
         </header>
         <div className="page-heading">
-          <h3> Banner Section</h3>
+          <h3> Category Section</h3>
         </div>
         <div className="page-content">
           <section id="content-types">
             <div className="row">
-              <h4> Upload New Banner</h4>
+              <h4> Upload New Category</h4>
               <div className="col-xl-6 col-md-6 col-sm-12">
                 <div className="card">
                 <div className="card-body">
@@ -235,26 +236,26 @@ const handleSubmit = (event) => {
                     <div className="form-body">
                       <div className="row">
                         <div className="col-md-4">
-                          <label>Banner Name</label>
+                          <label>Categories Name</label>
                         </div>
                         <div className="col-md-8 form-group">
-                          <input value={newBanner} onChange={(event) => setNewBanner(event.target.value)}
+                          <input value={newCategories} onChange={(event) => setNewCategories(event.target.value)}
                             type="text"
-                            id="banner-name"
+                            id="categories-name"
                             className="form-control"
-                            name="fname"
-                            placeholder= "Banner Name"
+                            name="catname"
+                            placeholder= "Categories Name"
                           />                         
                         </div>
                         <div className="col-md-4">
                           <label>Banner Link</label>
                         </div>
                         <div className="col-md-8 form-group">
-                          <input value={newImageUrl} onChange={(event) => setNewImageUrl(event.target.value)}
+                          <input value={newCategoriesUrl} onChange={(event) => setNewCategoriesUrl(event.target.value)}
                             type="text"
-                            id="banner-link"
+                            id="categories-link"
                             className="form-control"
-                            name="blink"
+                            name="categorieslink"
                             placeholder="https://"
                           />                         
                         </div>
@@ -278,10 +279,10 @@ const handleSubmit = (event) => {
             <br/>
             <br/>
             <div className="row">
-              <h4 > Edit/Delete Banner</h4>
+              <h4 > Edit/Delete Categories</h4>
               <div className="col-xl-8 col-md-6 col-sm-12">                
                  
-              {banner.map((item, index) => (
+              {categories.map((item, index) => (
                 <div className="card" key={item.id}>                  
                     <div className="card-content">
                       <div className="card-body">
@@ -354,11 +355,11 @@ const handleSubmit = (event) => {
                                         </div> */}
                           
                         <div className="col-md-4">
-                          <label>Edit Banner Name</label>
+                          <label>Edit Categories Name</label>
                         </div>
                         
                         <div className="col-md-8 form-group">
-                          <input value={editBannerName} onChange={(event) => setEditBannerName(event.target.value)}
+                          <input value={editCategoriesName} onChange={(event) => seteditCategoriesName(event.target.value)}
                             type="text"
                             id="first-name"
                             className="form-control"
@@ -371,7 +372,7 @@ const handleSubmit = (event) => {
                           <label>Edit Banner Link</label>
                         </div>
                         <div className="col-md-8 form-group">
-                          <input value={editBannerUrl} onChange={(event) => setEditBannerUrl(event.target.value)}
+                          <input value={editcategoriesUrl} onChange={(event) => setEditcategoriesUrl(event.target.value)}
                             type="text"
                             id="banner-link"
                             className="form-control"
