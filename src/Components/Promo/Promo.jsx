@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import { useFormik } from "formik"
-// import * as Yup from "yup"
+
 
 const Promo = () => {
   const [nameAccount, setNameAccount] = useState("");

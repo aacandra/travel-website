@@ -1,0 +1,73 @@
+#root {
+    --PrimaryColor: hsl(199,100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 11%, 16%) ;
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+ }
+
+.latest-promo{
+    margin: 50px 0;
+    padding: 50px;
+}
+
+.latest-promo-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+
+.promo-text{
+    margin-bottom: 50px;
+    align-items: center;
+  }
+
+
+.latest-promo-title h2 {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.card{
+    background-color: var(--cardBG);
+
+}
+.latest-promo .card .diskon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 0 5px;
+  }
+  
+  .latest-promo .card .diskon img {
+    width: 20px;
+  }
+  .latest-promo h2 {
+    font-weight: bold;
+    font-size: 35px;
+    color: var(--PrimaryColor);
+  }
+  
+  .latest-promo p:nth-child(2) {
+    font-size: 14px;
+  }
+  
+  .latest-promo p:nth-child(1) {
+    font-size: 14px;
+  }
+  
+  .latest-promo .logodisc {
+    width: 15px;
+  }
+  
+  .latest-promo p:nth-child(3) {
+    color: var(--PrimaryColor);
+  }

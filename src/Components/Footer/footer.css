@@ -1,0 +1,58 @@
+#root {
+    --PrimaryColor: hsl(199,100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 11%, 16%) ;
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+ }
+
+ .bg {
+    background-image: url('https://img.freepik.com/premium-photo/beach-sand-sea-sky-summer-day_63047-1209.jpg?size=626&ext=jpg&ga=GA1.1.2114018627.1683622945&semt=ais');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+/* Social media buttons */
+.btn-floating {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    color: #fff;
+  }
+  
+  .btn-floating:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  /* Footer form */
+  .footer-form {
+    margin-bottom: 20px;
+  }
+  
+  /* Footer text */
+  footer p {
+    margin-bottom: 20px;
+  }
+  
+  /* Links section */
+  footer h5 {
+    margin-bottom: 10px;
+  }
+  
+  /* Copyright section */
+  footer .text-center {
+    color: var(--bodyColor);
+    font-size: 14px;
+  }

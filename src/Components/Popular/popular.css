@@ -1,0 +1,67 @@
+#root {
+    --PrimaryColor: hsl(199,100%, 33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 11%, 16%) ;
+    --textColor: hsl(240, 4%, 36%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: rgb(239, 239, 239);
+    --bodyColor: rgb(240, 240, 246);
+    --cardBG: rgb(225, 225, 235);
+ }
+ 
+ .popular {
+  margin: 50px 0;
+  padding: 30px;
+}
+
+.popular-title{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-bottom: 15px;
+ 
+}
+
+.popular h2 {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.popular-cards{
+  background-color: var(--cardBG);
+  border-radius: 10px;
+}
+
+.popular-text{
+  margin-bottom: 50px;
+}
+.popular .popular-box p {
+  font-size: 14px;
+}
+
+.popular .popular-box p img {
+  width: 15px;
+  
+}
+
+.popular i {
+  color: rgb(1, 181, 25);
+  font-size: 11px;
+}
+
+.card-img-top{
+
+width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+ 
+
+
+
+
+
+
