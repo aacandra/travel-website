@@ -34,7 +34,7 @@ const ImageCarousel = () => {
         </div>
       </div>
 
-      <div className="card">
+      {/* <div className="slider">
         <div className="card-header">
           <h4>Slides only</h4>
           <p>A carousel without slide control</p>
@@ -50,7 +50,7 @@ const ImageCarousel = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

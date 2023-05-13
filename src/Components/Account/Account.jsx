@@ -37,6 +37,8 @@ const AccountDetail = ({ isLoggedIn }) => {
     fetchAccount();
   }, [navigate]);
 
+  const isAdmin = account?.data?.role === "admin"; 
+
   return (
     <div className="account">
       <div className="container">
@@ -73,10 +75,11 @@ const AccountDetail = ({ isLoggedIn }) => {
         </div>
      </div>
      <div>
-     <button           
-          onClick={() => navigate("/Admin")}
-          >Admin Panel
-      </button>
+     {isAdmin && (
+          <button onClick={() => navigate("/Admin")}>
+            Admin Panel
+          </button>
+        )}
 
      </div>
      <br/>
@@ -92,9 +95,10 @@ const AccountDetail = ({ isLoggedIn }) => {
          Logout
        </button>
       
-      
+       
     </div>
-    
+     
+     
      
 
 

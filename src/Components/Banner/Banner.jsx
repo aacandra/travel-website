@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {Modal, Card, Button} from 'react-bootstrap';
 
 const Banner = () => {
   const [nameAccount, setNameAccount] = useState("");
-  const [banner,setBanner] = useState([])
+  const [banner,setBanner] = useState([]);
   const [pictureAccount, setPictureAccount] = useState("");
   const [editBannerName, setEditBannerName] = useState("");
   const [editBannerUrl, setEditBannerUrl] = useState("");
-  const [newBanner, setNewBanner] = useState("")
-  const [newImageUrl,setNewImageUrl] = useState ("")
+  const [newBanner, setNewBanner] = useState("");
+  const [newImageUrl,setNewImageUrl] = useState ("");
 
-  
-  
-  useEffect(() => {
+  const [modalEdit, setModalEdit] = useState(false);
+  const [editBannerData, setEditBannerData] = useState({
+    id : "",
+    name : "",
+    imageUrl : ""
+  }); 
+
+  const closeModalEdit = () => setModalEdit(false);
+
+  // Get current account
+  const getAccount = () => {
     axios
       .get("https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/user", {
         headers: {
@@ -28,11 +37,10 @@ const Banner = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }
 
- 
-  //  LIST BANNER
-  useEffect(() => {
+  // Get list banner
+  const getBanners = () => {
     axios
       .get(
         "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/banners",
@@ -53,7 +61,53 @@ const Banner = () => {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  // Delete banner
+  const deleteBanners = () => {
+    axios
+      .delete(
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
+        {
+          headers: {
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert("Delete Banner Success")
+        window.location.reload();
+   
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+ 
+      });
+  }
+  
+  useEffect(() => {
+    getAccount();
+    getBanners();
   }, []);
+ 
+  // to insert banner in modal edit
+  const handleEditBanner = (idx) => {
+    setModalEdit(true);
+    setEditBannerData({
+      id : banner[idx].id,
+      name : banner[idx].name,
+      imageUrl : banner[idx].imageUrl
+    })
+  }
+
+// to delete banner in modal edit
+  const handleDeleteBanner = (idx)=>{
+
+  
+  }
+
 
   // EDIT/UPDATE BANNER
   const handleUpdate = (bannerId) => { 
@@ -106,36 +160,34 @@ const Banner = () => {
  
       });
   };
- 
-
    
-// UPLOAD NEW BANNER
-const handleSubmit = (event) => {
+  // UPLOAD NEW BANNER
+  const handleSubmit = (event) => {
     event.preventDefault();  
   
-  axios
-   .post(
-     `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-banner`,
-       {
-        name: newBanner,
-        imageUrl: newImageUrl,
-       },
-     {
-        headers: {
-        apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-     }
-   )
-   .then((response) => {
-    console.log(response.data);
-    window.location.reload();
+    axios
+    .post(
+      `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-banner`,
+        {
+          name: newBanner,
+          imageUrl: newImageUrl,
+        },
+      {
+          headers: {
+          apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data);
+      window.location.reload();
 
-    alert("Upload Success")
-   })
-   .catch((error) => {
-    console.log(error);
-   });
+      alert("Upload Success")
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   
@@ -280,77 +332,70 @@ const handleSubmit = (event) => {
               <h4 > Edit/Delete Banner</h4>
               <div className="col-xl-8 col-md-6 col-sm-12">                
                  
-              {banner.map((item, index) => (
+              <Modal show={modalEdit} onHide={closeModalEdit}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Edit Banner : {editBannerData.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>   
+                    <div className="col-md-4">
+                      <label>Edit Banner Name</label>
+                    </div>
+                     <div> <img src={editBannerData.imageUrl} alt="" /> </div>
+                    <div className="col-md-8 form-group">
+                      <input value={editBannerData.name} onChange={(event) => setEditBannerData(prevState => ({...prevState, name: event.target.value}))}
+                        type="text"
+                        id="first-name"
+                        className="form-control"
+                        name="fname"
+                        placeholder="Input nama"
+                      />                         
+                    </div>
+
+                    <div className="col-md-4">
+                      <label>Edit Banner Link</label>
+                    </div>
+                    <div className="col-md-8 form-group">
+                      <input value={editBannerData.imageUrl} onChange={(event) => setEditBannerData(prevState => ({...prevState, imageUrl: event.target.value}))}
+                        type="text"
+                        id="banner-link"
+                        className="form-control"
+                        name="blink"
+                        placeholder="Input url image"
+                      />                         
+                    </div>     
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={closeModalEdit} style={{backgroundColor : "grey"}}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={closeModalEdit} style={{backgroundColor : "#435ebe"}}>
+                    Save Changes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+
+              {banner.map((item, index) => {
+                return (
+                  <Card style={{ width: '18rem' }} key={index}>
+                    <Card.Img variant="top" src={item.imageUrl} />
+                    <Card.Body>
+                      <Card.Title>{item.name}</Card.Title>
+                      <Button onClick={() => handleEditBanner(index)} className="btn btn-light-primary">
+                        Edit
+                      </Button>
+                      <Button  onClick={() => handleDeleteBanner(index)} className="btn btn-light-primary">
+                        Delete
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                );
+              })}
+
+              {/* {banner.map((item, index) => (
                 <div className="card" key={item.id}>                  
                     <div className="card-content">
                       <div className="card-body">
                           <h6>File Name : {item.name}</h6>
-
-                            {/* modal blm fungsi */}
-                           {/* <span><button type="button" className="btn btn-outline-primary block" data-bs-toggle="modal" data-bs-target={`#large${item.id}`}>
-                            Edit/Delete
-                              </button></span>
-                      
-
-
-                       <div class="modal fade text-left" id={`#large${index}`}
-                                            tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
-                                            aria-hidden="true" >
-                                              
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Edit Banner</h5>
-                                                        <button type="button" class="close rounded-pill"
-                                                            data-bs-dismiss="modal" aria-label="Close">
-                                                            <i data-feather="x"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                    <div className="col-md-8 form-group">
-                          <input value={editBannerName} onChange={(event) => setEditBannerName(event.target.value)}
-                            type="text"
-                            id="first-name"
-                            className="form-control"
-                            name="fname"
-                            placeholder={item.name}
-                          />                         
-                        </div>
-
-                        <div className="col-md-4">
-                          <label>Edit Banner Link</label>
-                        </div>
-                        <div className="col-md-8 form-group">
-                          <input value={editBannerUrl} onChange={(event) => setEditBannerUrl(event.target.value)}
-                            type="text"
-                            id="banner-link"
-                            className="form-control"
-                            name="blink"
-                            placeholder={item.imageUrl}
-                          />                         
-                        </div>                                        
-                      </div>
-                      <div className="col-md-8 form-group">
-                        <img
-                        className="img-fluid w-50"
-                        src={item.imageUrl}
-                        alt="Card image cap"
-                      />
-                      <p>Banners ID : {item.id}</p></div>
-                      
-                      <div className="card-footer d-flex justify-content-between">
-                        <span>
-                          <button onClick={() => handleUpdate(item.id)} className="btn btn-light-primary">
-                            Update
-                          </button>
-                        </span>
-                        <button  onClick={() => handleDelete(item.id)} className="btn btn-light-primary">
-                          Delete
-                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
                           
                         <div className="col-md-4">
                           <label>Edit Banner Name</label>
@@ -400,17 +445,11 @@ const handleSubmit = (event) => {
                     </div>
                   
                 </div>
-                ))}
+                ))} */}
                  
 
-
-
               </div>
-              {/* <div className="col-xl-4 col-md-6 col-sm-12"> 
-              </div>
-              <div className="col-xl-4 col-md-6 col-sm-12"></div>
-              <div className="col-md-6 col-sm-12"></div>
-              <div className="col-md-6 col-sm-12"></div> */}
+              
             </div>
           </section>
         </div>

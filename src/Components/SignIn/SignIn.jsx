@@ -84,10 +84,12 @@ function ModalComponent() {
       </Button>
 
       <Modal
+        className="login-modal"
         show={show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        
       >
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
@@ -111,7 +113,7 @@ function ModalComponent() {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="info" type="submit">
               Submit
             </Button>
             {error && <p>{error}</p>}
@@ -121,9 +123,12 @@ function ModalComponent() {
            
           <p>
             Not Registered Yet?{" "}
-            <a href="#" onClick={handleShow}>
-              <RegisterModal />
-            </a>
+
+            <button style={{ backgroundColor: 'rgb(0, 115, 168)' }} className="btn" onClick={handleShow}>
+            
+            <RegisterModal/>
+           </button>
+            
           </p>
         </Modal.Footer>
       </Modal>

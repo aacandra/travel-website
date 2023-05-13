@@ -27,9 +27,6 @@ const Popular = () => {
     <div className="popular">
       <div className="popular-title">
       <h2>Popular Activites</h2></div>
-      <p className="popular-text text-secondary">
-      Selamat datang di dunia petualangan yang menakjubkan! Jika Anda mencari pengalaman wisata yang paling populer dan mengesankan, Temukan di sini! 
-      </p>
 
       <div className="popular-box">
         <div className="row">
