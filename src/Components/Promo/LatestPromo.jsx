@@ -44,7 +44,7 @@ const LatestPromo = () => {
                   <p className="card-text">{item.title}</p>
                   <p className="my-0">
                     <img
-                      src="img/discount.png"
+                      src="./src/assets/images/coupon.png"
                       alt=""
                       className="logodisc"
                     />{" "}

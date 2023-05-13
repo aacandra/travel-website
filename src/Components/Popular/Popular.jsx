@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './popular.css';
-// import { HiOutlineLocationMarker } from 'react-icons/hi';
 import axios from 'axios';
 
 const Popular = () => {
@@ -36,7 +35,7 @@ const Popular = () => {
               <div className="col-sm-3" key={i}>
                 <div className="popular-cards">
                   <img
-                    src={item.category.imageUrl}
+                    src={item.imageUrls[0]}
                     className="card-img-top"
                     alt="..."
                   />
@@ -57,7 +56,6 @@ const Popular = () => {
                       <img src="img/pin.png" alt="" />
                       {item.city}, {item.province}
                     </p>
-                    {/* <p className="card-text mt-1 mb-3 ">Rp. {item.price}</p> */}
 
                     <p className="text-secondary">
                       More <i className="fa-solid fa-circle-arrow-right"></i>
