@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import NavBar from "./Components/NavBar/Navbar";
+import NavBar from "./Components/Navbar/Navbar";
 import Account from "./Components/Account/Account";
 import UpdateProfile from "./Components/UpdateProfile/UpdateProfile";
 import Admin from "./Components/Admin/Admin"
