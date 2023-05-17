@@ -64,8 +64,6 @@ const Banner = () => {
       // setEditBannerName(response.data.name);
       // setEditBannerImageUrl(response.data.imageUrl); 
   
-       
-      
       alert('Update Data Succes!');
       window.location.reload()
 
@@ -115,7 +113,7 @@ const Banner = () => {
   }
  
   const editNameBanner = (event) => {
-    setEditBannerData((prevState) => ({
+    setEditBannerName((prevState) => ({
       ...prevState,
       name: event.target.value,
     }));
@@ -135,12 +133,9 @@ const Banner = () => {
       id : banner[idx].id,
       name : banner[idx].name,
       imageUrl : banner[idx].imageUrl
-
     })
 
-  
   }
-
 
   // EDIT BANNER
   // const handleUpdate = (bannerId) => { 
@@ -222,8 +217,6 @@ const Banner = () => {
       console.log(error);
     });
   }
-
-  
 
   return (
     <div id="app">
@@ -333,12 +326,11 @@ const Banner = () => {
                   <Button variant="secondary" onClick={closeModalEdit} style={{backgroundColor : "grey"}}>
                     Close
                   </Button>
-                  <Button variant="primary" onClick={() => editBanners(editBannerData.id)} style={{ backgroundColor: "#435ebe" }}>
+                  <Button variant="primary" onClick={() => editBanners(editBannerName, editBannerImageUrl)} style={{ backgroundColor: "#435ebe" }}>
                     Save Changes
                 </Button>
                 </Modal.Footer>
               </Modal>
-
 
               <Modal show={modalDelete} onHide={closeModalDelete}>
                 <Modal.Header closeButton>
@@ -349,10 +341,7 @@ const Banner = () => {
                    
                     </div>
                      <div> <img src={deleteBannerData.imageUrl} alt="" /> </div>
-                    
-
-                  
-                    
+      
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={closeModalDelete} style={{backgroundColor : "grey"}}>
@@ -363,8 +352,6 @@ const Banner = () => {
                   </Button>
                 </Modal.Footer>
               </Modal>
-
-
 
               {banner.map((item, index) => {
                 return (
@@ -382,66 +369,6 @@ const Banner = () => {
                   </Card>
                 );
               })}
-
-
-
-
-              {/* {banner.map((item, index) => (
-                <div className="card" key={item.id}>                  
-                    <div className="card-content">
-                      <div className="card-body">
-                          <h6>File Name : {item.name}</h6>
-                          
-                        <div className="col-md-4">
-                          <label>Edit Banner Name</label>
-                        </div>
-                        
-                        <div className="col-md-8 form-group">
-                          <input value={editBannerName} onChange={(event) => setEditBannerName(event.target.value)}
-                            type="text"
-                            id="first-name"
-                            className="form-control"
-                            name="fname"
-                            placeholder={item.name}
-                          />                         
-                        </div>
-
-                        <div className="col-md-4">
-                          <label>Edit Banner Link</label>
-                        </div>
-                        <div className="col-md-8 form-group">
-                          <input value={editBannerUrl} onChange={(event) => setEditBannerUrl(event.target.value)}
-                            type="text"
-                            id="banner-link"
-                            className="form-control"
-                            name="blink"
-                            placeholder={item.imageUrl}
-                          />                         
-                        </div>
-
-                                        
-                      </div>
-                      <img
-                        className="img-fluid w-100"
-                        src={item.imageUrl}
-                        alt="Card image cap"
-                      />
-                      <p>Banners ID : {item.id}</p>
-                      <div className="card-footer d-flex justify-content-between">
-                        <span>
-                          <button onClick={() => handleUpdate(item.id)} className="btn btn-light-primary">
-                            Update
-                          </button>
-                        </span>
-                        <button  onClick={() => handleDelete(item.id)} className="btn btn-light-primary">
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  
-                </div>
-                ))} */}
-                 
 
               </div>
               
