@@ -50,16 +50,29 @@
 
   /* Jumbotron Section Start */
 .jumbotron{
+  position: relative;
   width: 100%;
   padding-top: 100px;
-  height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url(https://img.freepik.com/premium-photo/amazing-beach-panorama-swing-palm-tree-relax-fun-romance-couple-vacation-summer-landscape_663265-159.jpg?w=900);
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100vh;  
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2));
 }
+
+
+.jumbotron img.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  z-index: -1;
+}
+
 .jumbotron .content{
   text-align: center;
   padding-top: 200px;
+  z-index: 1;
 }
 .jumbotron .content h5{
   color: white;

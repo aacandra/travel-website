@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const Sidebar = () => {
+   const [account, setAccount] = useState("");
+   const [picture, setPicture] = useState("");
 
-const [Account, setAccount] = useState("");
-const [picture, setPicture] = useState("");
-
-useEffect(() => {
+   useEffect(() => {
     axios
       .get("https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/user", {
         headers: {
@@ -24,7 +24,7 @@ useEffect(() => {
   }, []);
 
 
-const Sidebar = () => {
+
   return (
     <div>
     <div id="sidebar" className="active">
@@ -52,7 +52,7 @@ const Sidebar = () => {
                       <img src={picture} alt="Face 1" />
                     </div>
                     <div className="ms-3 name">
-                      <h6 className="font-bold">Hallo, {Account}</h6>
+                      <h6 className="font-bold">Hallo, {account}</h6>
                     </div>
                   </div>
                 </div>

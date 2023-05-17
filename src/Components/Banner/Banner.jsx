@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Modal, Card, Button} from 'react-bootstrap';
+import Sidebar from '../Sidebar/Sidebars'
 
-const Banner = () => {
-  const [nameAccount, setNameAccount] = useState("");
-  const [banner,setBanner] = useState([]);
-  const [pictureAccount, setPictureAccount] = useState("");
+const Banner = () => { 
+  const [banner,setBanner] = useState([]); 
   const [editBannerName, setEditBannerName] = useState("");
-  const [editBannerUrl, setEditBannerUrl] = useState("");
+  const [editBannerImageUrl, setEditBannerImageUrl] = useState("");
   const [newBanner, setNewBanner] = useState("");
-  const [newImageUrl,setNewImageUrl] = useState ("");
+  const [newImageUrl,setNewImageUrl] = useState ("");  
+  const [modalDelete, setModalDelete] = useState(false);
+  const [deleteBannerData,setDeleteBannerData] = useState({})
+  const closeModalDelete = () => setModalDelete(false);
 
   const [modalEdit, setModalEdit] = useState(false);
   const [editBannerData, setEditBannerData] = useState({
@@ -18,26 +20,7 @@ const Banner = () => {
     imageUrl : ""
   }); 
 
-  const closeModalEdit = () => setModalEdit(false);
-
-  // Get current account
-  const getAccount = () => {
-    axios
-      .get("https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/user", {
-        headers: {
-          apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        const user = response.data;
-        setNameAccount(user.data.name);
-        setPictureAccount(user.data.profilePictureUrl);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  const closeModalEdit = () => setModalEdit(false);  // // Get current ac
 
   // Get list banner
   const getBanners = () => {
@@ -54,8 +37,7 @@ const Banner = () => {
         console.log(response.data);
         const item = response.data.data;
         setBanner(item)   
-        setEditBannerName(response.data.data.name);
-        setEditBannerUrl(response.data.data.imageUrl);
+       
 
       })
       .catch((error) => {
@@ -63,8 +45,39 @@ const Banner = () => {
       });
   }
 
+  //Edit Banner
+  const editBanners = (bannerId) => {
+    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${bannerId}`, 
+     
+    {
+      name : editBannerName,
+      imageUrl : editBannerImageUrl
+    }  
+    ,{
+      headers: {
+        apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+
+    }).then((response) => {
+      console.log(response.data);
+      // setEditBannerName(response.data.name);
+      // setEditBannerImageUrl(response.data.imageUrl); 
+  
+       
+      
+      alert('Update Data Succes!');
+      window.location.reload()
+
+    }).catch((error) => {
+      console.log(error);
+      alert('Error Update Data. Try Again!.');
+    });    
+
+  }
+
   // Delete banner
-  const deleteBanners = () => {
+  const deleteBanners = (bannerId) => {
     axios
       .delete(
         `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
@@ -88,7 +101,6 @@ const Banner = () => {
   }
   
   useEffect(() => {
-    getAccount();
     getBanners();
   }, []);
  
@@ -101,65 +113,86 @@ const Banner = () => {
       imageUrl : banner[idx].imageUrl
     })
   }
+ 
+  const editNameBanner = (event) => {
+    setEditBannerData((prevState) => ({
+      ...prevState,
+      name: event.target.value,
+    }));
+  };
+
+  const editNameImageUrl = (event) => {
+    setEditBannerImageUrl((prevState) => ({
+      ...prevState,
+      image: event.target.value
+    }));
+  };
 
 // to delete banner in modal edit
   const handleDeleteBanner = (idx)=>{
+    setModalDelete(true);
+    setDeleteBannerData ({
+      id : banner[idx].id,
+      name : banner[idx].name,
+      imageUrl : banner[idx].imageUrl
+
+    })
 
   
   }
 
 
-  // EDIT/UPDATE BANNER
-  const handleUpdate = (bannerId) => { 
+  // EDIT BANNER
+  // const handleUpdate = (bannerId) => { 
        
   
-    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${bannerId}`, {
+  //   axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${bannerId}`, {
       
-      name: editBannerName,
-      imageUrl: editBannerUrl,
+  //     name: editBannerName,
+  //     imageUrl: editBannerUrl,
       
-    }, {
-      headers: {
-        apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+  //   }, {
+  //     headers: {
+  //       apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
 
 
-    }).then((response) => {
-      console.log(response.data);      
-      alert('Update Data Succes!');
-      window.location.reload();
+  //   }).then((response) => {
+  //     console.log(response.data);      
+  //     alert('Update Data Succes!');
+  //     window.location.reload();
       
 
-    }).catch((error) => {
-      console.log(error);
-      alert('Error Update Data. Try Again!.');
-    });
-  }
+  //   }).catch((error) => {
+  //     console.log(error);
+  //     alert('Error Update Data. Try Again!.');
+  //   });
+  // }
 
   // DELETE BANNER
-  const handleDelete = (bannerId) => {
-    axios
-      .delete(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
-        {
-          headers: {
-            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-        alert("Delete Banner Success")
-        window.location.reload();
+  // const handleDelete = (bannerId) => {
+  //   axios
+  //     .delete(
+  //       `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
+  //       {
+  //         headers: {
+  //           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       alert("Delete Banner Success")
+  //       window.location.reload();
    
-      })
-      .catch((error) => {
-        console.log(error.response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data);
  
-      });
-  };
+  //     });
+  // };
    
   // UPLOAD NEW BANNER
   const handleSubmit = (event) => {
@@ -194,78 +227,7 @@ const Banner = () => {
 
   return (
     <div id="app">
-      <div id="sidebar" className="active">
-        <div className="sidebar-wrapper active">
-          <div className="sidebar-header">
-            <div className="d-flex justify-content-between">
-              <div className="logo">
-                <a href="./" className="logo">
-                  <h4>Next-Travel </h4>
-                </a>
-              </div>
-              <div className="toggler">
-                <a href="#" className="sidebar-hide d-xl-none d-block">
-                  <i className="bi bi-x bi-middle" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="sidebar-menu">
-            <div className="col-12 col-lg-8">
-               
-                <div className="card-body py-4 px-5">
-                  <div className="d-flex align-items-center">
-                    <div className="avatar avatar-xl">
-                      <img src={pictureAccount} alt="Face 1" />
-                    </div>
-                    <div className="ms-3 name">
-                      <h6 className="font-bold">Hallo, {nameAccount}</h6>
-                      {/* <h6 className="text-muted mb-0">{emailAccount}</h6> */}
-                    </div>
-                  </div>
-                </div>
-              
-            </div>
-
-            <ul className="menu">
-              <li className="sidebar-title">Menu</li>
-              <li className="sidebar-item active ">
-                <a href="/Admin" className="sidebar-link">
-                  <i className="bi bi-person-fill" />
-                  <span>User</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Banner" className="sidebar-link">
-                  <i className="bi bi-image-fill" />
-                  <span>Banner</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Promo" className="sidebar-link">
-                  <i className="bi bi-collection-fill" />
-                  <span>Promo</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Category" className="sidebar-link">
-                  <i className="bi bi-card-list" />
-                  <span>Category</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Activity" className="sidebar-link">
-                  <i className="bi bi-basket-fill" />
-                  <span>Activity</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <button className="sidebar-toggler btn x">
-            <i data-feather="x" />
-          </button>
-        </div>
-      </div>
+    
       <div id="main">
         <header className="mb-3">
           <a href="#" className="burger-btn d-block d-xl-none">
@@ -273,6 +235,7 @@ const Banner = () => {
           </a>
         </header>
         <div className="page-heading">
+        <Sidebar/>  
           <h3> Banner Section</h3>
         </div>
         <div className="page-content">
@@ -342,7 +305,8 @@ const Banner = () => {
                     </div>
                      <div> <img src={editBannerData.imageUrl} alt="" /> </div>
                     <div className="col-md-8 form-group">
-                      <input value={editBannerData.name} onChange={(event) => setEditBannerData(prevState => ({...prevState, name: event.target.value}))}
+                      <input value={editBannerName.name} 
+                        onChange={editNameBanner} 
                         type="text"
                         id="first-name"
                         className="form-control"
@@ -355,7 +319,8 @@ const Banner = () => {
                       <label>Edit Banner Link</label>
                     </div>
                     <div className="col-md-8 form-group">
-                      <input value={editBannerData.imageUrl} onChange={(event) => setEditBannerData(prevState => ({...prevState, imageUrl: event.target.value}))}
+                      <input value={editBannerImageUrl.imageUrl} 
+                        onChange={editNameImageUrl}
                         type="text"
                         id="banner-link"
                         className="form-control"
@@ -368,11 +333,38 @@ const Banner = () => {
                   <Button variant="secondary" onClick={closeModalEdit} style={{backgroundColor : "grey"}}>
                     Close
                   </Button>
-                  <Button variant="primary" onClick={closeModalEdit} style={{backgroundColor : "#435ebe"}}>
+                  <Button variant="primary" onClick={() => editBanners(editBannerData.id)} style={{ backgroundColor: "#435ebe" }}>
                     Save Changes
+                </Button>
+                </Modal.Footer>
+              </Modal>
+
+
+              <Modal show={modalDelete} onHide={closeModalDelete}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Delete Banner : {deleteBannerData.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>   
+                    <div className="col-md-4">
+                   
+                    </div>
+                     <div> <img src={deleteBannerData.imageUrl} alt="" /> </div>
+                    
+
+                  
+                    
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={closeModalDelete} style={{backgroundColor : "grey"}}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={closeModalDelete} style={{backgroundColor : "#435ebe"}}>
+                    Delete Banner
                   </Button>
                 </Modal.Footer>
               </Modal>
+
+
 
               {banner.map((item, index) => {
                 return (
@@ -390,6 +382,9 @@ const Banner = () => {
                   </Card>
                 );
               })}
+
+
+
 
               {/* {banner.map((item, index) => (
                 <div className="card" key={item.id}>                  

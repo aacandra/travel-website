@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Sidebar from '../Sidebar/Sidebars'
 
 
 const Promo = () => {
-  const [nameAccount, setNameAccount] = useState("");
-  const [promo,setPromo] = useState([])
-  const [pictureAccount, setPictureAccount] = useState("");
+ 
+  const [promo,setPromo] = useState([])  
   const [editPromoName, setEditPromoName] = useState("");
   const [editPromoUrl, setEditPromoUrl] = useState("");
   const [editPromoDescription, setEditPromoDescription] = useState("");
@@ -23,27 +23,7 @@ const Promo = () => {
   const [newDiscountPromo,setNewDiscountPromo] = useState (0)
   const [newClaimPromo,setNewClainPromo] = useState (0)
 
-  
-  
-  useEffect(() => {
-    axios
-      .get("https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/user", {
-        headers: {
-          apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        const user = response.data;
-        setNameAccount(user.data.name);
-        setPictureAccount(user.data.profilePictureUrl);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
- 
+   
   //  LIST PROMO
   useEffect(() => {
     axios
@@ -76,6 +56,8 @@ const Promo = () => {
       
       name: editPromoName,
       imageUrl: editPromoUrl,
+
+
       
     }, {
       headers: {
@@ -162,160 +144,11 @@ const Promo = () => {
   }
   };
 
- 
 
-
-// UPLOAD NEW PROMO
-
-  // const formik = useFormik ({
-  //     initialValues: {
-  //       promoTitle : ' ',
-  //       promoDescription : ' ',
-  //       promoTermCondition : ' ',
-  //       promoCode : ' ',
-  //       discPrice : ' ',
-  //       claimPrice : ' ',
-  //       imageUrl : ' ',
-  //     },
-      
-  //     validationSchema: Yup.object({
-  //       promoTitle: Yup.string()
-  //         .required(),
-  //       promoDescription: Yup.string()
-  //         .required(), 
-  //       promoTermCondition: Yup.string()
-  //         .required(),  
-  //       promoCode: Yup.string()
-  //         .required(),
-  //       discPrice: Yup.string()
-  //         .required(),
-  //       claimPrice: Yup.string()
-  //         .required(),
-  //       imageUrl : Yup.string()
-  //       .required(),
-  //     }),
-
-  //     onSubmit : (values) => {
-        
-  //       const promoTitle = values.title
-  //       const promoDescription = values.description
-  //       const promoTermCondition = values.terms_condition
-  //       const promoCode = values.promo_code
-  //       const discPrice = values.promo_discount_price
-  //       const claimPrice = values.minimum_claim_price
-  //       const imageUrl = values.imageUrl
-
-
-  //       // console.log( 'form values', values);
-
-  //       axios
-  //  .post(
-  //    `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/create-promo`,
-  //      {
-  //       title: promoTitle,
-  //       imageUrl: imageUrl,
-  //       description : promoDescription,
-  //       terms_condition : promoTermCondition,
-  //       promo_code : promoCode,
-  //       promo_discount_price : discPrice,
-  //       minimum_claim_price : claimPrice,
-
-  //      },
-  //    {
-  //       headers: {
-  //       apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //     },
-  //    }
-  //  )
-  //  .then((response) => {
-  //   console.log(response.data);
-  //   // window.location.reload();
-
-  //   alert("Upload Success")
-  //  })
-  //  .catch((error) => {
-  //   console.log(error);
-  //  });
-        
-  //     }
-
-  // });
-  // console.log(formik);
  
   return (
     <div id="app">
-      <div id="sidebar" className="active">
-        <div className="sidebar-wrapper active">
-          <div className="sidebar-header">
-            <div className="d-flex justify-content-between">
-              <div className="logo">
-                <a href="./" className="logo">
-                  <h4>Next-Travel </h4>
-                </a>
-              </div>
-              <div className="toggler">
-                <a href="#" className="sidebar-hide d-xl-none d-block">
-                  <i className="bi bi-x bi-middle" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="sidebar-menu">
-            <div className="col-12 col-lg-8">
-               
-                <div className="card-body py-4 px-5">
-                  <div className="d-flex align-items-center">
-                    <div className="avatar avatar-xl">
-                      <img src={pictureAccount} alt="Face 1" />
-                    </div>
-                    <div className="ms-3 name">
-                      <h6 className="font-bold">Hallo, {nameAccount}</h6>                    
-                    </div>
-                  </div>
-                </div>
-              
-            </div>
-
-            <ul className="menu">
-              <li className="sidebar-title">Menu</li>
-              <li className="sidebar-item active ">
-                <a href="/Admin" className="sidebar-link">
-                  <i className="bi bi-person-fill" />
-                  <span>User</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Banner" className="sidebar-link">
-                  <i className="bi bi-image-fill" />
-                  <span>Banner</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Promo" className="sidebar-link">
-                  <i className="bi bi-collection-fill" />
-                  <span>Promo</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Category" className="sidebar-link">
-                  <i className="bi bi-card-list" />
-                  <span>Category</span>
-                </a>
-              </li>
-              <li className="sidebar-item active ">
-                <a href="/Activity" className="sidebar-link">
-                  <i className="bi bi-basket-fill" />
-                  <span>Activity</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <button className="sidebar-toggler btn x">
-            <i data-feather="x" />
-          </button>
-        </div>
-      </div>
+    <Sidebar/> 
       <div id="main">
         <header className="mb-3">
           <a href="#" className="burger-btn d-block d-xl-none">
