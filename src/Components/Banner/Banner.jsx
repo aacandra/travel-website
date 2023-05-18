@@ -46,8 +46,8 @@ const Banner = () => {
   }
 
   //Edit Banner
-  const editBanners = (bannerId) => {
-    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${bannerId}`, 
+  const editBanners = (id) => {
+    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${id}`, 
      
     {
       name : editBannerName,
@@ -326,7 +326,7 @@ const Banner = () => {
                   <Button variant="secondary" onClick={closeModalEdit} style={{backgroundColor : "grey"}}>
                     Close
                   </Button>
-                  <Button variant="primary" onClick={() => editBanners(editBannerName, editBannerImageUrl)} style={{ backgroundColor: "#435ebe" }}>
+                  <Button variant="primary" onClick={() => editBanners(editBannerData.id)} style={{ backgroundColor: "#435ebe" }}>
                     Save Changes
                 </Button>
                 </Modal.Footer>
