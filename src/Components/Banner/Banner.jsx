@@ -237,7 +237,7 @@ const Banner = () => {
                         id="first-name"
                         className="form-control"
                         name="fname"
-                        placeholder="Input nama"
+                        placeholder="Input New Banner Name"
                       />                         
                     </div>
 
@@ -251,7 +251,7 @@ const Banner = () => {
                         id="banner-link"
                         className="form-control"
                         name="blink"
-                        placeholder="Input url image"
+                        placeholder="Input Image Url"
                       />                         
                     </div>     
                 </Modal.Body>
