@@ -5,22 +5,11 @@ import Sidebar from '../Sidebar/Sidebars'
 
 const Banner = () => { 
   const [banner,setBanner] = useState([]); 
-  const [editBannerName, setEditBannerName] = useState("");
-  const [editBannerImageUrl, setEditBannerImageUrl] = useState("");
+  const [name, setName] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
   const [newBanner, setNewBanner] = useState("");
   const [newImageUrl,setNewImageUrl] = useState ("");  
-  const [modalDelete, setModalDelete] = useState(false);
-  const [deleteBannerData,setDeleteBannerData] = useState({})
-  const closeModalDelete = () => setModalDelete(false);
-
-  const [modalEdit, setModalEdit] = useState(false);
-  const [editBannerData, setEditBannerData] = useState({
-    id : "",
-    name : "",
-    imageUrl : ""
-  }); 
-
-  const closeModalEdit = () => setModalEdit(false);  // // Get current ac
+  const [show, setShow] = useState(false)
 
   // Get list banner
   const getBanners = () => {
@@ -45,40 +34,60 @@ const Banner = () => {
       });
   }
 
-  //Edit Banner
-  const editBanners = (id) => {
-    axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${id}`, 
-     
-    {
-      name : editBannerName,
-      imageUrl : editBannerImageUrl
-    }  
-    ,{
-      headers: {
-        apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-
-    }).then((response) => {
-      console.log(response.data);
-      // setEditBannerName(response.data.name);
-      // setEditBannerImageUrl(response.data.imageUrl); 
   
-      alert('Update Data Succes!');
-      window.location.reload()
+  useEffect(() => {
+    getBanners();
+  }, []);
+ 
+  // Update Banner Data
 
-    }).catch((error) => {
+  const handleSubmit2 = (e, item) => {
+    e.preventDefault() 
+
+    axios
+    .post(
+      `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${item.id}`,
+        {
+          name: name,
+          imageUrl: imageUrl,
+        },
+      {
+          headers: {
+          apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
+    .then((response) => {
+      console.log(response.data);
+      window.location.reload();
+      setName("")
+      setImageUrl("")
+
+      alert("Update Data Banner Success")
+    })
+    .catch((error) => {
       console.log(error);
-      alert('Error Update Data. Try Again!.');
-    });    
+    });
 
   }
 
-  // Delete banner
-  const deleteBanners = (bannerId) => {
-    axios
+  const handleClose = () => {
+    setShow(false) 
+  }
+
+  const handleShow = (id) =>{
+    setShow(id)
+  } 
+
+// to delete banner in modal edit
+  const handleDelete = (e, item) => {
+    e.preventDefault()
+    const text = "Are Sure to Delete Banner?"
+    if (confirm(text) === true) {
+      axios
       .delete(
-        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
+        `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${item.id}`,
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
@@ -96,98 +105,9 @@ const Banner = () => {
         console.log(error.response.data);
  
       });
+
+    }
   }
-  
-  useEffect(() => {
-    getBanners();
-  }, []);
- 
-  // to insert banner in modal edit
-  const handleEditBanner = (idx) => {
-    setModalEdit(true);
-    setEditBannerData({
-      id : banner[idx].id,
-      name : banner[idx].name,
-      imageUrl : banner[idx].imageUrl
-    })
-  }
- 
-  const editNameBanner = (event) => {
-    setEditBannerName((prevState) => ({
-      ...prevState,
-      name: event.target.value,
-    }));
-  };
-
-  const editNameImageUrl = (event) => {
-    setEditBannerImageUrl((prevState) => ({
-      ...prevState,
-      image: event.target.value
-    }));
-  };
-
-// to delete banner in modal edit
-  const handleDeleteBanner = (idx)=>{
-    setModalDelete(true);
-    setDeleteBannerData ({
-      id : banner[idx].id,
-      name : banner[idx].name,
-      imageUrl : banner[idx].imageUrl
-    })
-
-  }
-
-  // EDIT BANNER
-  // const handleUpdate = (bannerId) => { 
-       
-  
-  //   axios.post(`https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-banner/${bannerId}`, {
-      
-  //     name: editBannerName,
-  //     imageUrl: editBannerUrl,
-      
-  //   }, {
-  //     headers: {
-  //       apiKey: '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-  //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //     },
-
-
-  //   }).then((response) => {
-  //     console.log(response.data);      
-  //     alert('Update Data Succes!');
-  //     window.location.reload();
-      
-
-  //   }).catch((error) => {
-  //     console.log(error);
-  //     alert('Error Update Data. Try Again!.');
-  //   });
-  // }
-
-  // DELETE BANNER
-  // const handleDelete = (bannerId) => {
-  //   axios
-  //     .delete(
-  //       `https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/delete-banner/${bannerId}`,
-  //       {
-  //         headers: {
-  //           apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       alert("Delete Banner Success")
-  //       window.location.reload();
-   
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
- 
-  //     });
-  // };
    
   // UPLOAD NEW BANNER
   const handleSubmit = (event) => {
@@ -288,18 +208,31 @@ const Banner = () => {
               <h4 > Edit/Delete Banner</h4>
               <div className="col-xl-8 col-md-6 col-sm-12">                
                  
-              <Modal show={modalEdit} onHide={closeModalEdit}>
+              {banner.map((item, index) => {
+                return (
+                  <Card style={{ width: '18rem' }} key={index}>
+                    <Card.Img variant="top" src={item.imageUrl} />
+                    <Card.Body>
+                      <Card.Title>{item.name}</Card.Title>
+                      <Button onClick={() => handleShow(item.id)} className="btn btn-light-primary">
+                        Edit
+                      </Button>
+                      <Button  onClick={(e) => handleDelete(e,item)} className="btn btn-light-primary">
+                        Delete
+                      </Button>
+                    </Card.Body>
+                    <Modal show={show === item.id} onHide={handleClose}>
                 <Modal.Header closeButton>
-                  <Modal.Title>Edit Banner : {editBannerData.name}</Modal.Title>
+                  <Modal.Title>Edit Banner : {item.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>   
                     <div className="col-md-4">
                       <label>Edit Banner Name</label>
                     </div>
-                     <div> <img src={editBannerData.imageUrl} alt="" /> </div>
+                     <div> <img src={item.imageUrl} alt="" /> </div>
                     <div className="col-md-8 form-group">
-                      <input value={editBannerName.name} 
-                        onChange={editNameBanner} 
+                      <input value={name} 
+                        onChange={(e)=> setName(e.target.value)} 
                         type="text"
                         id="first-name"
                         className="form-control"
@@ -312,8 +245,8 @@ const Banner = () => {
                       <label>Edit Banner Link</label>
                     </div>
                     <div className="col-md-8 form-group">
-                      <input value={editBannerImageUrl.imageUrl} 
-                        onChange={editNameImageUrl}
+                      <input value={imageUrl} 
+                        onChange={(e)=> setImageUrl(e.target.value)}
                         type="text"
                         id="banner-link"
                         className="form-control"
@@ -323,55 +256,18 @@ const Banner = () => {
                     </div>     
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={closeModalEdit} style={{backgroundColor : "grey"}}>
+                  <Button variant="secondary" onClick={handleClose} style={{backgroundColor : "grey"}}>
                     Close
                   </Button>
-                  <Button variant="primary" onClick={() => editBanners(editBannerData.id)} style={{ backgroundColor: "#435ebe" }}>
+                  <Button variant="primary" onClick={(e) => handleSubmit2(e,item)} style={{ backgroundColor: "#435ebe" }}>
                     Save Changes
                 </Button>
                 </Modal.Footer>
               </Modal>
-
-              <Modal show={modalDelete} onHide={closeModalDelete}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Delete Banner : {deleteBannerData.name}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>   
-                    <div className="col-md-4">
-                   
-                    </div>
-                     <div> <img src={deleteBannerData.imageUrl} alt="" /> </div>
-      
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={closeModalDelete} style={{backgroundColor : "grey"}}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={closeModalDelete} style={{backgroundColor : "#435ebe"}}>
-                    Delete Banner
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-
-              {banner.map((item, index) => {
-                return (
-                  <Card style={{ width: '18rem' }} key={index}>
-                    <Card.Img variant="top" src={item.imageUrl} />
-                    <Card.Body>
-                      <Card.Title>{item.name}</Card.Title>
-                      <Button onClick={() => handleEditBanner(index)} className="btn btn-light-primary">
-                        Edit
-                      </Button>
-                      <Button  onClick={() => handleDeleteBanner(index)} className="btn btn-light-primary">
-                        Delete
-                      </Button>
-                    </Card.Body>
                   </Card>
                 );
               })}
-
-              </div>
-              
+              </div>              
             </div>
           </section>
         </div>
