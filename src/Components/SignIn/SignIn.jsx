@@ -109,10 +109,7 @@ function ModalComponent() {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" name="password" value={formLogin.password} onChange={handleInputChange} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+            </Form.Group>             
             <Button variant="info" type="submit">
               Submit
             </Button>

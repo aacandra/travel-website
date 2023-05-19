@@ -71,3 +71,22 @@
   .latest-promo p:nth-child(3) {
     color: var(--PrimaryColor);
   }
+
+  .edit-promos {
+    display: flex;
+    flex-wrap: wrap;   
+    
+  }
+
+.card-promo{
+     
+    width: 18rem;
+    margin: 10px;
+    background-color: var(--cardBG);
+    border-radius: 10px;
+     
+} 
+
+.card-footer{
+  background-color: var(--cardBG);
+}

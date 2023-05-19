@@ -1,0 +1,12 @@
+.edit-banners {
+    display: flex;
+    flex-wrap: wrap;   
+    
+  }
+
+.card-banner{
+     
+    width: 18rem;
+    margin: 10px;
+     
+}   

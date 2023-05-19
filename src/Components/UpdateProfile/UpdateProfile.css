@@ -1,11 +1,11 @@
 .edit-account {
-    margin-top: 50px;
+     
     display: flex;
     justify-content: center;
   }
   
-  .container {
-    /* max-width: 500px; */
+  .containers {
+    margin-top: 150px;
     width: 100%;
     background-color: #f7f7f7;
     padding: 30px;

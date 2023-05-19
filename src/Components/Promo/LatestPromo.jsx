@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './promo.css';
-// import { HiOutlineLocationMarker } from 'react-icons/hi';
 import axios from 'axios';
 
 const LatestPromo = () => {

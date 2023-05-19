@@ -49,10 +49,12 @@ const Sidebar = () => {
                 <div className="card-body py-4 px-5">
                   <div className="d-flex align-items-center">
                     <div className="avatar avatar-xl">
-                      <img src={picture} alt="Face 1" />
+                    <a href="/Account" className="account-link">
+                      <img src={picture} alt="Face 1"  />
+                      </a>
                     </div>
-                    <div className="ms-3 name">
-                      <h6 className="font-bold">Hallo, {account}</h6>
+                    <div className="ms-3 name">          
+                      <a href="/Account" className="account-link"><h6 className="font-bold">Hallo, {account}</h6></a>
                     </div>
                   </div>
                 </div>
@@ -62,11 +64,17 @@ const Sidebar = () => {
             <ul className="menu">
               <li className="sidebar-title">Menu</li>
               <li className="sidebar-item active ">
-                <a href="/Admin" className="sidebar-link">
-                  <i className="bi bi-person-fill" />
-                  <span>User</span>
+                <a href="/" className="sidebar-link">
+                  <i className="bi bi-house-fill" />
+                  <span>Home</span>
                 </a>
               </li>
+              <li className="sidebar-item active ">
+                <a href="/Admin" className="sidebar-link">
+                  <i className="bi bi-person-fill" />
+                  <span>User Role</span>
+                </a>
+              </li>              
               <li className="sidebar-item active ">
                 <a href="/Banner" className="sidebar-link">
                   <i className="bi bi-image-fill" />

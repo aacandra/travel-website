@@ -41,8 +41,12 @@ const AccountDetail = ({ isLoggedIn }) => {
 
   return (
     <div className="account">
-      <div className="container">
-      <h2>Welcome, {account ? account.data.name : ''}</h2>
+       
+      <div className="containers">
+      <div class="row">
+      <div class="col-md-12 ml-auto mr-auto">
+      <h2 className="text-center">Welcome, {account ? account.data.name : ''}</h2>
+      <br/>
         <div className="account-content">
           {account ? (
             <>
@@ -52,28 +56,34 @@ const AccountDetail = ({ isLoggedIn }) => {
               />
               <div className="account-detail">
                 <ul>
-                <li><h4>ID : {account.data.id}</h4></li>
+                
                 <li><h4>Name : {account.data.name}</h4></li>
                 <li><h4>Email : {account.data.email}</h4></li>
                 <li><h4>Role : {account.data.role}</h4></li>
                 <li><h4>Phone Number : {account.data.phoneNumber}</h4></li>
                 </ul>
-              </div>
-              
-              <button                  
-                onClick={() => navigate("/UpdateProfile")}
-              >
-                Edit Profile
-              </button>
-
-              
-
-            </>
+              </div>        
+                </>
           ) : (
             <p>Loading...</p>
           )}
         </div>
      </div>
+     </div>
+     </div>      
+
+
+     <div className="row">
+      <div className="col-md-12 ml-auto mr-auto">  
+       <div className="editprofile-tabs"> 
+      <div>
+      <button                  
+                onClick={() => navigate("/UpdateProfile")}
+              >
+                Edit Profile
+      </button>
+      </div>
+      <br/>
      <div>
      {isAdmin && (
           <button onClick={() => navigate("/Admin")}>
@@ -93,9 +103,12 @@ const AccountDetail = ({ isLoggedIn }) => {
          }}
        >
          Logout
-       </button>
-      
-       
+      </button> 
+         </div>
+       </div>  
+      </div>
+
+
     </div>
      
      

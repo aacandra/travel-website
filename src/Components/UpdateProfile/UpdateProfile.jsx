@@ -10,6 +10,7 @@ function UpdateProfile() {
   const [emailEdit, setEmailEdit] = useState("");
   const [pictureEdit, setPictureEdit] = useState("");
   const [numberEdit, setNumberEdit] = useState("");
+  const [images, setImages] = useState();
   const [loading, setLoading] = useState(true);
 
 
@@ -32,13 +33,43 @@ function UpdateProfile() {
     });
   }, []);
 
-  const handleSubmit = (event) => {
+
+  const handleImage = (e) => {
+    setImages(e.target.files[0]);
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    let imageUrl = {
+      url: pictureEdit,
+    };
+
+    if (images) {
+      const formData = new FormData();
+      formData.append("image", images);
+      await axios
+        .post(
+          "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/upload-image",
+          formData,
+          {
+            headers: {
+              apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          imageUrl = response.data;
+          console.log(response.data);
+        });
+    }
   
     axios.post('https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/update-profile', {
       name: nameEdit,
       email: emailEdit,
-      profilePictureUrl: pictureEdit,
+      profilePictureUrl: imageUrl.url,
       phoneNumber: numberEdit,
     }, {
       headers: {
@@ -64,7 +95,7 @@ function UpdateProfile() {
 
   return (
     <div className='edit-account'>
-      <div className='container'>
+      <div className='containers'>
         <h1>Edit Account Detail</h1>
             <div className='profile-picture'>
             <p>Profil Picture</p>
@@ -85,25 +116,21 @@ function UpdateProfile() {
             <Form.Control type="email" placeholder="Enter email" value={emailEdit} onChange={(event) => setEmailEdit(event.target.value)} />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicText">
+          {/* <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>Profile Picture</Form.Label>
             <Form.Control type="text" placeholder="Profile Picture URL" value={pictureEdit} onChange={(event) => setPictureEdit(event.target.value)} />
-          </Form.Group>
+          </Form.Group> */}
+
+          <Form.Group controlId="formFile" className="mb-3">
+           <Form.Label>Profile Picture</Form.Label>
+           <Form.Control type="file"   accept="image/*" id="picture" name="picture" placeholder="Profile Picture URL" // value={pictureEdit}
+            onChange={(e) => handleImage(e)}   />
+         </Form.Group>
         
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control type="text" placeholder="Profile Phone Number" value={numberEdit} onChange={(event) => setNumberEdit(event.target.value)} />
           </Form.Group>
-
-          {/* <Form.Group className="mb-3" controlId="formSelect">
-            <Form.Label>Role</Form.Label>
-            <Form.Select aria-label="Select Role" value={roleEdit} onChange={(event) => setRoleEdit(event.target.value)} >
-              <option>Plase Select Your Role</option>
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
-            </Form.Select>
-            {roleError && <div className="text-danger">Please select your role!</div>}
-        </Form.Group> */}
 
         <Button variant="primary" type="submit">
         Save Changes

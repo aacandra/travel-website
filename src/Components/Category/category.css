@@ -1,0 +1,13 @@
+.edit-categories {
+    display: flex;
+    flex-wrap: wrap;   
+    
+  }
+
+.card-category{
+    width: 18rem;
+    margin: 10px;
+    background-color: rgb(225, 225, 235);
+    border-radius: 10px;
+     
+}   
