@@ -38,6 +38,8 @@ const Popular = () => {
               <div className="col-sm-3" key={i}>
                 <div
                   className="popular-cards"
+                  data-bs-toggle="modal"
+                  data-bs-target={`#popularh${item.id}`}
                   
                 >
                   <img

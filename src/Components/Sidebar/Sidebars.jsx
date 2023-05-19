@@ -62,7 +62,7 @@ const Sidebar = () => {
             </div>
 
             <ul className="menu">
-              <li className="sidebar-title">Menu</li>
+            
               <li className="sidebar-item active ">
                 <a href="/" className="sidebar-link">
                   <i className="bi bi-house-fill" />
