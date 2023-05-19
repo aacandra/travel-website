@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "../Sidebar/Sidebars";
-import "./promo.css";
+import './promo.css';
 
 const Promo = () => {
   const [promo, setPromo] = useState([]);
@@ -312,150 +312,150 @@ const Promo = () => {
             <div className="row">
               <h4> Edit/Delete Promo</h4>
               <div className="col-xl-12 col-md-6 col-sm-12">
-                <div className="edit-promos">
-                  {promo.map((item) => (
-                    <div className="card-promo" key={item.id}>
-                      <div className="card-content">
-                        <div className="card-body">
-                          <div className="col-md-4">
-                            <label>Edit Tittle</label>
-                          </div>
-
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={editPromoName}
-                              onChange={(event) =>
-                                setEditPromoName(event.target.value)
-                              }
-                              type="text"
-                              id="first-name"
-                              className="form-control"
-                              name="fname"
-                              placeholder={item.title}
-                            />
-                          </div>
-
-                          <div className="form-group mb-3">
-                            <label>Description</label>
-                            <textarea
-                              className="form-control"
-                              id="promo-description"
-                              rows={3}
-                              value={editPromoDescription}
-                              onChange={(event) =>
-                                setEditPromoDescription(event.target.value)
-                              }
-                              placeholder={item.description}
-                            />
-                          </div>
-
-                          <div className="form-group mb-3">
-                            <label>Term & Condition</label>
-                            <textarea
-                              className="form-control"
-                              id="promo-term-condition"
-                              rows={3}
-                              value={editPromoTerm}
-                              onChange={(event) =>
-                                setEditPromoTerm(event.target.value)
-                              }
-                              placeholder={item.terms_condition}
-                            />
-                          </div>
-
-                          <div className="col-md-4">
-                            <label>Promo Code</label>
-                          </div>
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={editPromoCode}
-                              onChange={(event) =>
-                                setEditPromoCode(event.target.value)
-                              }
-                              type="text"
-                              id="promo-code"
-                              className="form-control"
-                              name="pcode"
-                              placeholder={item.promo_code}
-                            />
-                          </div>
-
-                          <div className="col-md-4">
-                            <label>Promo Disc Price</label>
-                          </div>
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={editPromoDisc}
-                              onChange={(event) =>
-                                setEditPromoDisc(event.target.value)
-                              }
-                              type="number"
-                              id="discount-price"
-                              className="form-control"
-                              name="discprice"
-                              placeholder={item.promo_discount_price}
-                            />
-                          </div>
-
-                          <div className="col-md-4">
-                            <label>Min Claim Price</label>
-                          </div>
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={editPromoClaim}
-                              onChange={(event) =>
-                                setEditPromoClaim(event.target.value)
-                              }
-                              type="number"
-                              id="discount-price"
-                              className="form-control"
-                              name="claimprice"
-                              placeholder={item.minimum_claim_price}
-                            />
-                          </div>
-
-                          <div className="col-md-4">
-                            <label>Edit Image</label>
-                          </div>
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={editPromoUrl}
-                              onChange={(event) =>
-                                setEditPromoUrl(event.target.value)
-                              }
-                              type="text"
-                              id="banner-link"
-                              className="form-control"
-                              name="blink"
-                              placeholder={item.imageUrl}
-                            />
-                          </div>
+              <div className="edit-promos">
+                {promo.map((item) => (
+                  <div className="card-promo" key={item.id}>
+                    <div className="card-content">
+                      <div className="card-body">
+                        <div className="col-md-4">
+                          <label>Edit Promo Tittle</label>
                         </div>
-                        <img
-                          className="img-fluid w-100"
-                          src={item.imageUrl}
-                          alt="Card image cap"
-                        />
-                        <p>PROMO ID : {item.id}</p>
-                        <div className="card-footer d-flex justify-content-between">
-                          <span>
-                            <button
-                              onClick={() => handleUpdate(item.id)}
-                              className="btn btn-light-primary"
-                            >
-                              Update
-                            </button>
-                          </span>
-                          <button
-                            onClick={() => handleDelete(item.id)}
-                            className="btn btn-light-primary"
-                          >
-                            Delete
-                          </button>
+
+                        <div className="col-md-8 form-group">
+                          <input
+                            value={editPromoName}
+                            onChange={(event) =>
+                              setEditPromoName(event.target.value)
+                            }
+                            type="text"
+                            id="first-name"
+                            className="form-control"
+                            name="fname"
+                            placeholder={item.title}
+                          />
+                        </div>
+
+                        <div className="form-group mb-3">
+                          <label>Description</label>
+                          <textarea
+                            className="form-control"
+                            id="promo-description"
+                            rows={3}
+                            value={editPromoDescription}
+                            onChange={(event) =>
+                              setEditPromoDescription(event.target.value)
+                            }
+                            placeholder={item.description}
+                          />
+                        </div>
+
+                        <div className="form-group mb-3">
+                          <label>Term & Condition</label>
+                          <textarea
+                            className="form-control"
+                            id="promo-term-condition"
+                            rows={3}
+                            value={editPromoTerm}
+                            onChange={(event) =>
+                              setEditPromoTerm(event.target.value)
+                            }
+                            placeholder={item.terms_condition}
+                          />
+                        </div>
+
+                        <div className="col-md-4">
+                          <label>Promo Code</label>
+                        </div>
+                        <div className="col-md-8 form-group">
+                          <input
+                            value={editPromoCode}
+                            onChange={(event) =>
+                              setEditPromoCode(event.target.value)
+                            }
+                            type="text"
+                            id="promo-code"
+                            className="form-control"
+                            name="pcode"
+                            placeholder={item.promo_code}
+                          />
+                        </div>
+
+                        <div className="col-md-4">
+                          <label>Promo Discount Price</label>
+                        </div>
+                        <div className="col-md-8 form-group">
+                          <input
+                            value={editPromoDisc}
+                            onChange={(event) =>
+                              setEditPromoDisc(event.target.value)
+                            }
+                            type="number"
+                            id="discount-price"
+                            className="form-control"
+                            name="discprice"
+                            placeholder={item.promo_discount_price}
+                          />
+                        </div>
+
+                        <div className="col-md-4">
+                          <label>Minimum Claim Price</label>
+                        </div>
+                        <div className="col-md-8 form-group">
+                          <input
+                            value={editPromoClaim}
+                            onChange={(event) =>
+                              setEditPromoClaim(event.target.value)
+                            }
+                            type="number"
+                            id="discount-price"
+                            className="form-control"
+                            name="claimprice"
+                            placeholder={item.minimum_claim_price}
+                          />
+                        </div>
+
+                        <div className="col-md-4">
+                          <label>Edit Promo Image</label>
+                        </div>
+                        <div className="col-md-8 form-group">
+                          <input
+                            value={editPromoUrl}
+                            onChange={(event) =>
+                              setEditPromoUrl(event.target.value)
+                            }
+                            type="text"
+                            id="banner-link"
+                            className="form-control"
+                            name="blink"
+                            placeholder={item.imageUrl}
+                          />
                         </div>
                       </div>
+                      <img
+                        className="img-fluid w-100"
+                        src={item.imageUrl}
+                        alt="Card image cap"
+                      />
+                      <p>PROMO ID : {item.id}</p>
+                      <div className="card-footer d-flex justify-content-between">
+                        <span>
+                          <button
+                            onClick={() => handleUpdate(item.id)}
+                            className="btn btn-light-primary"
+                          >
+                            Update
+                          </button>
+                        </span>
+                        <button
+                          onClick={() => handleDelete(item.id)}
+                          className="btn btn-light-primary"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
                 </div>
               </div>
             </div>

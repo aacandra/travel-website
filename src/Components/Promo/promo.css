@@ -38,23 +38,28 @@
 
 .card{
     background-color: var(--cardBG);
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
 
 }
+
+.card img{
+   height: 180px;
+}
+
 .latest-promo .card .diskon {
     position: absolute;
     top: 5px;
     left: 5px;
     padding: 0 5px;
+    color: var(--PrimaryColor);
   }
   
-  .latest-promo .card .diskon img {
-    width: 30px;
-  }
-  .latest-promo h2 {
+ 
+  /* .latest-promo h2 {
     font-weight: bold;
     font-size: 35px;
     color: var(--PrimaryColor);
-  }
+  } */
   
   .latest-promo p:nth-child(2) {
     font-size: 14px;
@@ -64,9 +69,6 @@
     font-size: 14px;
   }
   
-  .latest-promo .logodisc {
-    width: 25px;
-  }
   
   .latest-promo p:nth-child(3) {
     color: var(--PrimaryColor);
@@ -77,6 +79,8 @@
     flex-wrap: wrap;   
     
   }
+
+/* ADMIN PANEL STYLE */
 
 .card-promo{
      

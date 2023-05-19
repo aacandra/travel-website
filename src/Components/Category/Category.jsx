@@ -34,7 +34,7 @@ const Category = () => {
   }, []);
 
   // EDIT/UPDATE CATEGORIES
-  const handleUpdate = (bannerId) => {
+  const handleUpdate = (categoriesId) => {
     axios
       .post(
         `

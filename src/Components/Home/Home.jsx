@@ -30,7 +30,7 @@ const ImageCarousel = () => {
           <h1>Visit <span className="changecontent" /></h1>
           <p>Selamat datang di dunia petualangan yang menakjubkan! <br/>
             Jika Anda mencari pengalaman wisata yang paling populer dan mengesankan, Temukan di sini!</p>
-          <a href="#book">Book Place</a>
+          <a href="#book">Explore</a>
         </div>
       </div>
 

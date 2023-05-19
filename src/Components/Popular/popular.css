@@ -33,7 +33,9 @@
 .popular-cards{
   background-color: var(--cardBG);
   border-radius: 10px;
+  box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
 }
+
 
 .popular-text{
   margin-bottom: 50px;
@@ -42,14 +44,20 @@
   font-size: 14px;
 }
 
-.popular .popular-box p img {
-  width: 15px;
+.popular-cards img {
+  height: 180px;
   
 }
 
-.popular i {
-  color: rgb(1, 181, 25);
-  font-size: 11px;
+.card-modal-body{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.popular-cards i {
+  color: var(--PrimaryColor);
+  font-size: 14px;
+  margin-right: 5px;
 }
 
 .card-img-top{

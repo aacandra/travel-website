@@ -40,13 +40,9 @@ const LatestPromo = () => {
                 />
                 <p className="diskon bg-light">{item.promo_code}</p>
                 <div className="card-body">
-                  <p className="card-text">{item.title}</p>
+                  <h6 className="card-text">{item.title}</h6>
                   <p className="my-0">
-                    <img
-                      src="./src/assets/images/coupon.png"
-                      alt=""
-                      className="logodisc"
-                    />{" "}
+                  <i class="bi bi-bookmark-star-fill info"></i>
                     Disc. 
                   </p>
                   <p className="mb-0">
