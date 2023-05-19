@@ -36,10 +36,12 @@ const Popular = () => {
           {popular.map((item, i) => {
             return (
               <div className="col-sm-3" key={i}>
-                <div
-                  className="popular-cards"
+                <div className="popular-cards">
+                <a
+                  
                   data-bs-toggle="modal"
                   data-bs-target={`#popularh${item.id}`}
+                  href={`#popularh${item.id}`}
                   
                 >
                   <img
@@ -70,6 +72,7 @@ const Popular = () => {
                     </p>
                     </div>
                   </div>
+                </a>
                 </div>
                 <div>
                   <div
