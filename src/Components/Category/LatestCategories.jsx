@@ -42,7 +42,7 @@ const Categories = () => {
               <div className="popular-cards">
                 <img src={item.imageUrl} className="card-img-top" alt="..." />
                 <div className="card-box d-flex px-2 mt-2 justify-content-between">
-                  <h5>{item.name}</h5>
+                  <h6>{item.name}</h6>
                   <p className="text-secondary">
                       Cari <i className="bi bi-search"></i>
                     </p>
