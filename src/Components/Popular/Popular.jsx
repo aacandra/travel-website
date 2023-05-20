@@ -40,9 +40,9 @@ const Popular = () => {
                 <div className="popular-cards">
                 <a
 
-                  data-bs-toggle="modal"
-                  data-bs-target={`#popularh${item.id}`}
-                  href={`#popularh${item.id}`}
+                  // data-bs-toggle="modal"
+                  // data-bs-target={`#popularh${item.id}`}
+                  // href={`#popularh${item.id}`}
 
                 >
                   <img
@@ -60,17 +60,19 @@ const Popular = () => {
                   </div>
 
                   <div className="card-modal-body py-0">
-                    <p className="card-text mb-1">
+                    {/* <p className="card-text mb-1">
                       <i class="bi bi-geo-alt-fill"></i>
                       {item.city}, {item.province}
-                    </p>
+                    </p> */}
                     <div className="modal-link"
-                      data-bs-toggle="modal"
-                      data-bs-target={`#popularh${item.id}`}
+                      // data-bs-toggle="modal"
+                      // data-bs-target={`#popularh${item.id}`}
                     >
-                    <p className="text-secondary">
+                      <button className="modal-link" data-bs-toggle="modal"
+                      data-bs-target={`#popcat${item.id}`}>More</button>
+                    {/* <p className="text-secondary">
                       Lihat <i class="bi bi-arrow-right-square-fill"></i>
-                    </p>
+                    </p> */}
                     </div>
                   </div>
                 </a>
@@ -78,7 +80,7 @@ const Popular = () => {
                 <div>
                   <div
                     className="modal fade"
-                    id={`popularh${item.id}`}
+                    id={`popcat${item.id}`}
                     tabIndex={-1}
                     aria-labelledby="exampleModalLabel"
                     aria-hidden="true"
