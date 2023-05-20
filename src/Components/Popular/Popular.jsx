@@ -55,10 +55,11 @@ const Popular = () => {
                 style={{ marginBottom: "20px", width: "19rem" }}
                 key={index}
               >
-                <Card.Img variant="top" src={item.imageUrls[0]} />
+                <Card.Img variant="top" src={item.imageUrls[0]} 
+                onClick={() => handleShow(item.id)}/>
                 <Card.Body>
                   <Card.Title>
-                    <h6>{item.title}</h6>
+                    <h6>{item.title}  <i class="bi bi-arrow-right-square-fill"></i></h6>
                   </Card.Title>
                   <Card.Text className="card-text">
                     <p>
@@ -72,9 +73,7 @@ const Popular = () => {
                       {item.city}, {item.province}
                     </p>
                   </Card.Text>
-                  <Card.Link onClick={() => handleShow(item.id)}>
-                    More <i class="bi bi-arrow-right-square-fill"></i>
-                  </Card.Link>
+                   
                 </Card.Body>
 
                 <Modal show={show === item.id} onHide={handleClose}>

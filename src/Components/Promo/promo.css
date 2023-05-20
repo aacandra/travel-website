@@ -85,6 +85,21 @@
     
   }
 
+  .modal-body{
+    display: grid;
+    justify-content: center;
+    align-items: left;
+    padding: 25px;
+  }
+  .modal-body p{
+   font-size: 14px;
+   
+  } 
+
+  .modal-body img{
+    height: 200px;
+  }
+
 /* ADMIN PANEL STYLE */
 
 .card-promo{
