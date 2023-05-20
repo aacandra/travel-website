@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./popular.css";
 import axios from "axios";
 
+
 const Popular = () => {
   const [popular, setPopular] = useState([]);
 
@@ -38,11 +39,11 @@ const Popular = () => {
               <div className="col-sm-3" key={i}>
                 <div className="popular-cards">
                 <a
-                  
+
                   data-bs-toggle="modal"
                   data-bs-target={`#popularh${item.id}`}
                   href={`#popularh${item.id}`}
-                  
+
                 >
                   <img
                     src={item.imageUrls[0]}
@@ -128,11 +129,9 @@ const Popular = () => {
                             className="btn btn-secondary"
                             data-bs-dismiss="modal"
                           >
-                            Close
+                            Book
                           </button>
-                          {/* <button type="button" className="btn btn-primary">
-                            Save changes
-                          </button> */}
+
                         </div>
                       </div>
                     </div>
