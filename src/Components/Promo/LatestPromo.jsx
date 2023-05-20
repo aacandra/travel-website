@@ -4,7 +4,8 @@ import axios from 'axios';
 
 const LatestPromo = () => {
   const [promo, setPromo] = useState([]);
-  const [show, setShow] = useState(false)
+  const [selectedPromo, setSelectedPromo] = useState(null);
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     axios
@@ -24,12 +25,14 @@ const LatestPromo = () => {
   }, []);
 
 
-  const handleDetailClick = (item) =>{
-    setShow(true)
+  const handleDetailClick = (promo) =>{
+    setSelectedPromo(promo)
+    setShowModal(true)
   }
 
   const handleClose = () =>{
-    setShow(false)
+    setSelectedPromo(null)
+    setShowModal(false)
   }
   return (
     <div className="latest-promo">
@@ -45,7 +48,7 @@ const LatestPromo = () => {
               <div className="card"
                 data-bs-toggle="modal"
                 data-bs-target={`#promo${item.id}`}
-                onClick={() => handleDetailClick(item)}
+                onClick={() => handleDetailClick(promo)}
               >
                     
                 <img
@@ -68,12 +71,14 @@ const LatestPromo = () => {
                 </div>
               </div>
 
+              
+              {selectedPromo && (
               <div
-                      className="modal fade"
+                      className={`modal fade ${showModal ? "show" : ""}`}
                       id={`promo${item.id}`}
                       tabIndex={-1}
                       aria-labelledby="exampleModalLabel"
-                      aria-hidden="true"
+                      aria-hidden={!showModal}
                     >
                       <div className="modal-dialog">
                         <div className="modal-content">
@@ -131,8 +136,9 @@ const LatestPromo = () => {
                         </div>
                       </div>
                       </div>
+                      )}
             </div>
-
+            
             );
           })}
         </div>
