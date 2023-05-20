@@ -36,7 +36,7 @@ const Popular = () => {
         <div className="row">
           {popular.map((item, i) => {
             return (
-              <div className="col-sm-3" key={i}>
+              <div className="col-sm-3" style={{ marginBottom: "20px" }} key={i}>
                 <div className="popular-cards">
                 <a
 

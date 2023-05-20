@@ -38,7 +38,7 @@ const Categories = () => {
       <div className="popular-box">
         <div className="row">
           {categories.map((item) => (
-            <div className="col-sm-3" key={item}>
+            <div className="col-sm-3" style={{ marginBottom: "20px" }} key={item}>
               <div className="popular-cards">
                 <img src={item.imageUrl} className="card-img-top" alt="..." />
                 <div className="card-box d-flex px-2 mt-2 justify-content-between">
