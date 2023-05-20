@@ -54,6 +54,11 @@
     color: var(--PrimaryColor);
   }
   
+
+.card-disc{
+  display: flex;
+  justify-content: space-between;
+}  
  
   /* .latest-promo h2 {
     font-weight: bold;

@@ -43,15 +43,11 @@ const Categories = () => {
                 <img src={item.imageUrl} className="card-img-top" alt="..." />
                 <div className="card-box d-flex px-2 mt-2 justify-content-between">
                   <h5>{item.name}</h5>
-                  <p>
-                    <i className="bi bi-star-fill text-warning pe-1"></i>
-                  </p>
-                </div>
-                <div className="card-body py-0">
                   <p className="text-secondary">
-                    Lihat <i className="fa-solid fa-circle-arrow-right"></i>
-                  </p>
+                      Cari <i className="bi bi-search"></i>
+                    </p>
                 </div>
+                 
               </div>
             </div>
           ))}

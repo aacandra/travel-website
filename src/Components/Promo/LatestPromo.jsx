@@ -46,6 +46,7 @@ const LatestPromo = () => {
                 <p className="diskon bg-light">{item.promo_code}</p>
                 <div className="card-body">
                   <h6 className="card-text">{item.title}</h6>
+                  <div className="card-disc">
                   <p className="my-0">
                   <i class="bi bi-bookmark-star-fill info"></i>
                     Disc. 
@@ -53,6 +54,7 @@ const LatestPromo = () => {
                   <p className="mb-0">
                     Rp. {item.promo_discount_price},-
                   </p>
+                  </div>
                 </div>
               </div>
 
