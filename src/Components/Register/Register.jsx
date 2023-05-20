@@ -17,13 +17,37 @@ function RegisterModal() {
   });
 
   const [success, setSuccess] = useState(false);
+  const [images, setImages] = useState();
   const [error, setError] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    let imageUrl = null
+
+
+    if (images) {
+      const formData = new FormData();
+      formData.append("image", images);
+      await axios
+        .post(
+          "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/upload-image",
+          formData,
+          {
+            headers: {
+              apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          imageUrl = response.data;
+          console.log(response.data);
+        });
+    }
 
     axios
       .post(
@@ -44,6 +68,11 @@ function RegisterModal() {
         console.log(error);
         setError(error.response.data.message);
       });
+  };
+
+  const handleImage = (e) => {
+    setImages(e.target.files[0]);
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleChange = (event) => {
@@ -69,7 +98,7 @@ function RegisterModal() {
         <Modal.Body>
 
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" >
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="email"
@@ -80,7 +109,7 @@ function RegisterModal() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Group className="mb-3" >
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -91,7 +120,7 @@ function RegisterModal() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" >
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -102,7 +131,7 @@ function RegisterModal() {
               />
             </Form.Group>
      
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" >
                 <Form.Label>Password Repeat</Form.Label>
                 <Form.Control type="password" 
                 placeholder="Password" 
@@ -111,7 +140,7 @@ function RegisterModal() {
                 onChange={handleChange} />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formSelect">
+            <Form.Group className="mb-3" >
             <Form.Label>Select Role</Form.Label>
             <Form.Select aria-label="Default select example" 
             name="role" 
@@ -122,15 +151,14 @@ function RegisterModal() {
             </Form.Select>
           </Form.Group>
 
-      <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Profile Picture URL</Form.Label>
-            <Form.Control type="text" 
-            name="profilePictureUrl" 
-            value={formRegister.profilePictureUrl} 
-            onChange={handleChange} />
-          </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicNumber">
+          <Form.Group  className="mb-3">
+           <Form.Label>Profile Picture</Form.Label>
+           <Form.Control type="file"   accept="image/*" id="picture" name="picture" placeholder="Profile Picture URL" 
+            onChange={(e) => handleImage(e)}   />
+         </Form.Group>
+
+          <Form.Group className="mb-3" >
             <Form.Label>Phone Number</Form.Label>
             <Form.Control type="text" placeholder="Phone Number" 
             name="phoneNumber" value={formRegister.phoneNumber} 

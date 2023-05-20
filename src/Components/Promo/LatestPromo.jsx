@@ -30,9 +30,14 @@ const LatestPromo = () => {
 
       <div className="promo-box">
         <div className="row">
-          {promo.map((item, i) => (
+          {promo.map((item, i) => {
+            return (
             <div className="col-sm-3" key={i}>
-              <div className="card">
+              <div className="card"
+                data-bs-toggle="modal"
+                data-bs-target={`#promo${item.id}`}
+              >
+                    
                 <img
                   src={item.imageUrl}
                   className="card-img-top"
@@ -50,8 +55,72 @@ const LatestPromo = () => {
                   </p>
                 </div>
               </div>
+
+              <div
+                      className="modal fade"
+                      id={`promo${item.id}`}
+                      tabIndex={-1}
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h3
+                              className="modal-title fs-5"
+                              id="exampleModalLabel"
+                            >
+                              {item.title}
+                            </h3>
+                            <button
+                              type="button"
+                              className="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            />
+                          </div>
+                          <div className="modal-body cek">
+                            <img src={item.imageUrl} alt="" />
+                            <hr />
+                            <p className="my-0">
+                              {" "}
+                               {item.description}
+                            </p>
+                            <p className="my-0">
+                              {" "}
+                              Promo code : {item.promo_code}
+                            </p>
+                            <p className="my-0">
+                              {" "}
+                              Promo discount price : Rp{
+                                item.promo_discount_price
+                              }{" "}
+                            </p>
+                            <p className="my-0">
+                              {" "}
+                              Minimun discount price :{" "}
+                              Rp{item.minimum_claim_price}
+                            </p>
+                          </div>
+                          <div className="modal-footer">
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                            <button type="button" className="btn btn-primary">
+                              Get Promo
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
             </div>
-          ))}
+
+            );
+          })}
         </div>
       </div>
     </div>

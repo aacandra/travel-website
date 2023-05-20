@@ -116,11 +116,6 @@ function UpdateProfile() {
             <Form.Control type="email" placeholder="Enter email" value={emailEdit} onChange={(event) => setEmailEdit(event.target.value)} />
           </Form.Group>
 
-          {/* <Form.Group className="mb-3" controlId="formBasicText">
-            <Form.Label>Profile Picture</Form.Label>
-            <Form.Control type="text" placeholder="Profile Picture URL" value={pictureEdit} onChange={(event) => setPictureEdit(event.target.value)} />
-          </Form.Group> */}
-
           <Form.Group controlId="formFile" className="mb-3">
            <Form.Label>Profile Picture</Form.Label>
            <Form.Control type="file"   accept="image/*" id="picture" name="picture" placeholder="Profile Picture URL" // value={pictureEdit}
