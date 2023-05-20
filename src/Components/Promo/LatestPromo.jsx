@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const LatestPromo = () => {
   const [promo, setPromo] = useState([]);
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     axios
@@ -22,6 +23,14 @@ const LatestPromo = () => {
       });
   }, []);
 
+
+  const handleDetailClick = (item) =>{
+    setShow(true)
+  }
+
+  const handleClose = () =>{
+    setShow(false)
+  }
   return (
     <div className="latest-promo">
       <div className="latest-promo-title">
@@ -36,6 +45,7 @@ const LatestPromo = () => {
               <div className="card"
                 data-bs-toggle="modal"
                 data-bs-target={`#promo${item.id}`}
+                onClick={() => handleDetailClick(item)}
               >
                     
                 <img
@@ -109,10 +119,12 @@ const LatestPromo = () => {
                               type="button"
                               className="btn btn-secondary"
                               data-bs-dismiss="modal"
+                              onClick={handleClose}
                             >
                               Close
                             </button>
-                            <button type="button" className="btn btn-primary">
+                            <button type="button" className="btn btn-primary"
+                             onClick={handleClose}>
                               Get Promo
                             </button>
                           </div>
