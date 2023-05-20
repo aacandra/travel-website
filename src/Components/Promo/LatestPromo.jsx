@@ -70,7 +70,7 @@ const LatestPromo = () => {
                           <div className="modal-header">
                             <h3
                               className="modal-title fs-5"
-                              id="exampleModalLabel"
+                              // id="exampleModalLabel"
                             >
                               {item.title}
                             </h3>
