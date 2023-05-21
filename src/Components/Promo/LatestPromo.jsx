@@ -37,7 +37,7 @@ function LatestPromo() {
   };
 
   return (
-    <div className="latest-promo">
+    <div className="latest-promo" id="promo">
       <div className="latest-promo-title">
         <h2>Latest Promo</h2>
       </div>

@@ -41,7 +41,7 @@ const Popular = () => {
   };
 
   return (
-    <div className="popular">
+    <div className="popular" id="activity">
       <div className="popular-title text-center">
         <h2>Popular Activites</h2>
       </div>
