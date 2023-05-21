@@ -31,7 +31,7 @@ const Services = () => {
               <div className="item">                
                 <div className="item-body">
                 <i className="bi bi-shield-fill-check" />
-                  <h3>Safty Guide</h3>
+                  <h3>Safety Guide</h3>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, eaque.</p>
                 </div>
               </div>
