@@ -77,7 +77,7 @@ const Banner = () => {
     setShow(id);
   };
 
-  // to delete banner in modal edit
+  // DELETE BANNER
   const handleDelete = (e, item) => {
     e.preventDefault();
     const text = "Are Sure to Delete Banner?";
@@ -214,84 +214,84 @@ const Banner = () => {
 
               <div className="col-xl-12 col-md-6 col-sm-12">
                 <div className="edit-banners">
-                {banner.map((item, index) => {
-                  return (
-                    <Card className="card-banner"  key={index}>
-                      <Card.Img variant="top" src={item.imageUrl} />
-                      <Card.Body>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Button
-                          onClick={() => handleShow(item.id)}
-                          className="btn btn-light-primary"
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          onClick={(e) => handleDelete(e, item)}
-                          className="btn btn-light-primary"
-                        >
-                          Delete
-                        </Button>
-                      </Card.Body>
-                      <Modal show={show === item.id} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                          <Modal.Title>Edit Banner : {item.name}</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <div className="col-md-4">
-                            <label>Edit Banner Name</label>
-                          </div>
-                          <div>
-                            {" "}
-                            <img src={item.imageUrl} alt="" />{" "}
-                          </div>
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={name}
-                              onChange={(e) => setName(e.target.value)}
-                              type="text"
-                              id="first-name"
-                              className="form-control"
-                              name="fname"
-                              placeholder="Input New Banner Name"
-                            />
-                          </div>
+                  {banner.map((item, index) => {
+                    return (
+                      <Card className="card-banner" key={index}>
+                        <Card.Img variant="top" src={item.imageUrl} />
+                        <Card.Body>
+                          <Card.Title>{item.name}</Card.Title>
+                          <Button
+                            onClick={() => handleShow(item.id)}
+                            className="btn btn-light-primary"
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            onClick={(e) => handleDelete(e, item)}
+                            className="btn btn-light-primary"
+                          >
+                            Delete
+                          </Button>
+                        </Card.Body>
+                        <Modal show={show === item.id} onHide={handleClose}>
+                          <Modal.Header closeButton>
+                            <Modal.Title>Edit Banner : {item.name}</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            <div className="col-md-4">
+                              <label>Edit Banner Name</label>
+                            </div>
+                            <div>
+                              {" "}
+                              <img src={item.imageUrl} alt="" />{" "}
+                            </div>
+                            <div className="col-md-8 form-group">
+                              <input
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                type="text"
+                                id="first-name"
+                                className="form-control"
+                                name="fname"
+                                placeholder="Input New Banner Name"
+                              />
+                            </div>
 
-                          <div className="col-md-4">
-                            <label>Edit Banner Link</label>
-                          </div>
-                          <div className="col-md-8 form-group">
-                            <input
-                              value={imageUrl}
-                              onChange={(e) => setImageUrl(e.target.value)}
-                              type="text"
-                              id="banner-link"
-                              className="form-control"
-                              name="blink"
-                              placeholder="Input Image Url"
-                            />
-                          </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                          <Button
-                            variant="secondary"
-                            onClick={handleClose}
-                            style={{ backgroundColor: "grey" }}
-                          >
-                            Close
-                          </Button>
-                          <Button
-                            variant="primary"
-                            onClick={(e) => handleSubmit2(e, item)}
-                            style={{ backgroundColor: "#435ebe" }}
-                          >
-                            Save Changes
-                          </Button>
-                        </Modal.Footer>
-                      </Modal>
-                    </Card>
-                  );
-                })}
+                            <div className="col-md-4">
+                              <label>Edit Banner Link</label>
+                            </div>
+                            <div className="col-md-8 form-group">
+                              <input
+                                value={imageUrl}
+                                onChange={(e) => setImageUrl(e.target.value)}
+                                type="text"
+                                id="banner-link"
+                                className="form-control"
+                                name="blink"
+                                placeholder="Input Image Url"
+                              />
+                            </div>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button
+                              variant="secondary"
+                              onClick={handleClose}
+                              style={{ backgroundColor: "grey" }}
+                            >
+                              Close
+                            </Button>
+                            <Button
+                              variant="primary"
+                              onClick={(e) => handleSubmit2(e, item)}
+                              style={{ backgroundColor: "#435ebe" }}
+                            >
+                              Save Changes
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
+                      </Card>
+                    );
+                  })}
                 </div>
               </div>
             </div>

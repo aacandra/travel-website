@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import RegisterModal from '../Register/Register';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import RegisterModal from "../Register/Register";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function ModalComponent() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function ModalComponent() {
   const handleClose = () => {
     setShow(false);
     setSuccess(false);
-  }
+  };
 
   const handleShow = () => setShow(true);
 
@@ -28,54 +28,52 @@ function ModalComponent() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        'https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/login',
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/login",
         formLogin,
         {
           headers: {
-            'apiKey': '24405e01-fbc1-45a5-9f5a-be13afcd757c',
-          }
+            apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
+          },
         }
       );
       if (response.status === 200) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        alert("Login Success!")
-        navigate('/Account'); 
+        alert("Login Success!");
+        navigate("/Account");
       }
-      
     } catch (error) {
       setError("Wrong email address or password");
     }
-  }
+  };
 
   const handleLogout = async (event) => {
     event.preventDefault();
     try {
       await axios.post(
-        'https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/logout',
+        "https://travel-journal-api-bootcamp.do.dibimbing.id/api/v1/logout",
         null,
         {
           headers: {
             apiKey: "24405e01-fbc1-45a5-9f5a-be13afcd757c",
             Authorization: `bearer ${token}`,
-          }
+          },
         }
       );
       setToken(null);
       localStorage.removeItem("token");
-      
     } catch (error) {
       setError(error.response.data);
     }
   };
-  
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormLogin({
       ...formLogin,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -89,7 +87,6 @@ function ModalComponent() {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        
       >
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
@@ -103,13 +100,25 @@ function ModalComponent() {
           <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" name="email" value={formLogin.email} onChange={handleInputChange} />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={formLogin.email}
+                onChange={handleInputChange}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" name="password" value={formLogin.password} onChange={handleInputChange} />
-            </Form.Group>             
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={formLogin.password}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
             <Button variant="info" type="submit">
               Submit
             </Button>
@@ -117,15 +126,15 @@ function ModalComponent() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-           
           <p>
             Not Registered Yet?{" "}
-
-            <button style={{ backgroundColor: 'rgb(0, 115, 168)' }} className="btn" onClick={handleShow}>
-            
-            <RegisterModal/>
-           </button>
-            
+            <button
+              style={{ backgroundColor: "rgb(0, 115, 168)" }}
+              className="btn"
+              onClick={handleShow}
+            >
+              <RegisterModal />
+            </button>
           </p>
         </Modal.Footer>
       </Modal>
@@ -134,5 +143,3 @@ function ModalComponent() {
 }
 
 export default ModalComponent;
- 
- 

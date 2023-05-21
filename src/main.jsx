@@ -6,13 +6,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NavBar from "./Components/Navbar/Navbar";
 import Account from "./Components/Account/Account";
 import UpdateProfile from "./Components/UpdateProfile/UpdateProfile";
-import Admin from "./Components/Admin/Admin"
-import Banner from "./Components/Banner/Banner"
-import Category from "./Components/Category/Category"
-import Promo from "./Components/Promo/Promo"
-import Activity from "./Components/Activity/Activity"
-
-
+import Admin from "./Components/Admin/Admin";
+import Banner from "./Components/Banner/Banner";
+import Category from "./Components/Category/Category";
+import Promo from "./Components/Promo/Promo";
+import Activity from "./Components/Activity/Activity";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +46,6 @@ const router = createBrowserRouter([
       </>
     ),
   },
-
 
   {
     path: "/UpdateProfile",
@@ -94,7 +91,6 @@ const router = createBrowserRouter([
     ),
   },
 
-
   {
     path: "/Promo",
     element: (
@@ -116,10 +112,6 @@ const router = createBrowserRouter([
       </>
     ),
   },
-  
-
-
-
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Footer = () => {
   return (
     <footer style={{ paddingTop: "50px" }}>
@@ -48,8 +47,8 @@ const Footer = () => {
                       id="form5Example21"
                       className="form-control"
                     />
-                    <label className="form-label" htmlFor="form5Example21" >
-                      Email address
+                    <label className="form-label" htmlFor="form5Example21">
+                      Email Address
                     </label>
                   </div>
                 </div>
@@ -63,7 +62,7 @@ const Footer = () => {
             </form>
           </section>
 
-          <section className="text-secondary mb-4" >
+          <section className="text-secondary mb-4">
             <p>
               Next Travel adalah website yang menyajikan informasi seputar
               destinasi wisata di Indonesia
@@ -71,22 +70,7 @@ const Footer = () => {
           </section>
 
           <section className>
-            <div className="row">
-              {/* <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 className="text">Links</h5>
-           
-          </div>
-          
-          <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 className="text">Links</h5>
-            
-          </div>
-      
-          <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 className="text">Links</h5>
-             
-          </div> */}
-            </div>
+            <div className="row"></div>
           </section>
         </div>
 
@@ -94,9 +78,9 @@ const Footer = () => {
           className="text-center p-3"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
-          © 2023 Copyright:
+          © 2023 Copyright :
           <a className="text-white" href="https://dibimbingid.com/">
-            Next Travel
+            Next-Travel
           </a>
         </div>
       </div>
